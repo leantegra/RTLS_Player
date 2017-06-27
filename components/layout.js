@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Grid, Cell } from 'react-mdc-web/lib/Grid'
 import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle } from 'react-mdc-web/lib/Toolbar'
 import Button from 'react-mdc-web/lib/Button'
+import { Body2 } from 'react-mdc-web/lib/Typography'
 
 import MainMenu from './MainMenu'
 
@@ -24,6 +25,11 @@ let MainToolbar = () => (
   </Toolbar>
 )
 
+let Footer = () => (
+  <footer>
+      <Body2>&copy; leantegra.com, 2017</Body2>
+  </footer>
+)
 /*
 */
 export default ({ children, title = 'RTLS player' }) => (
@@ -37,15 +43,13 @@ export default ({ children, title = 'RTLS player' }) => (
       { /* <link type="text/css" href="/static/css/mdc.typography.css" rel="stylesheet"> */}
       <link type='text/css' href='/static/css/global.min.css' rel='stylesheet' />
     </Head>
-    <header><MainToolbar /></header>
+    <MainToolbar />
 
     <Grid>
-      <Cell col={4} tablet={3}>Nav</Cell>
       <Cell col={8} tablet={5}>{children}</Cell>
+      <Cell col={4} tablet={3}></Cell>
     </Grid>
-
-    <footer>
-      &copy; leantegra.com, 2017
-    </footer>
+    
+    <Footer />
   </div>
 )

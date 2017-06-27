@@ -12,16 +12,16 @@ class MainMenu extends Component {
   state = {}
   render() {
     return (
-      <MenuAnchor style={{position: 'relative'}} >
+      <MenuAnchor style={{ position: 'relative' }} >
         <Button onClick={this.toogler}>
           <Icon name="more_vert" />
         </Button>
         <Menu
           right
           open={this.state.open}
-          onClose={()=> this.setState({open:false})}
+          onClose={() => this.setState({ open: false })}
         >
-          <MenuItem onClick={ routeTo('/about') }>About</MenuItem>
+          <MenuItem><Link href='/about'><Button>About</Button></Link></MenuItem>
         </Menu>
       </MenuAnchor>
     )

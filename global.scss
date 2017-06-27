@@ -1,9 +1,17 @@
-$mdc-theme-primary: #039be5; // light-blue-600
-$mdc-theme-accent: #43a047;  // green-600
+$mdc-theme-primary: #3f51b5; // indigo
+$mdc-theme-accent: #009688;  // teal-5700
 $mdc-theme-background: #fff;
 
 @import "material-components-web/material-components-web";
 
+$primary-dark-color: #002984;
+$primary-light-color: #757de8;
+
 body {
   margin: 0;
+}
+
+footer {
+  background-color: $primary-light-color;
+  padding: 20px;
 }
