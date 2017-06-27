@@ -9,7 +9,16 @@ The RTLS player works fully inside Docker and keep node_modules inside Docker im
 
 ```
 docker-compose up
-docker-compose build,
+docker-compose up --build
+docker-compose build
+docker-compose exec player bash
+
 docker-compose -f docker-compose.prod.yml up -d,
 docker-compose -f docker-compose.prod.yml logs
+```
+
+Please add new npm modules inside container only:
+
+```
+docker-compose exec player yarn add my-module
 ```

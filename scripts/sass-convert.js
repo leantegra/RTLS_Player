@@ -1,7 +1,7 @@
 var sass = require('node-sass');
 
 sass.render({
-    file: 'global.sass',
+    file: 'global.scss',
     output: 'global.css',
     includePaths: [ 'node_modules/'],
     outputStyle: 'compressed'
