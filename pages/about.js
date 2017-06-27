@@ -1,6 +1,6 @@
-import { Typography, Title, Body2 } from "react-mdc-web/lib/Typography";
 import Layout from '../components/layout'
 
+/*
 const StyleButton = (props) => (
 
   <div>
@@ -20,14 +20,18 @@ const StyleButton = (props) => (
   </div>
 )
 
-export default () => (
-  <Layout title='About us'>
-    <Typography>
-      <p>RTLS test <i className="material-icons">face</i></p>
-    </Typography>
+let Buttons = () => (
+  <div>
     <StyleButton>one</StyleButton>
     <h3>
       <StyleButton large>two2</StyleButton>
     </h3>
+  </div>
+)
+*/
+
+export default () => (
+  <Layout title='About us'>
+    <p>RTLS player</p>
   </Layout>
 )

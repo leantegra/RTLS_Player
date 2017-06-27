@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import Link from 'next/link'
+import Router from 'next/router'
 import Icon from "react-mdc-web/lib/Icon"
 import Button from "react-mdc-web/lib/Button"
 import { Menu, MenuAnchor, MenuItem } from "react-mdc-web/lib/Menu"
@@ -19,7 +20,7 @@ class MainMenu extends Component {
           onClose={()=> this.setState({open:false})}
         >
           <MenuItem onClick={console.log('About')}>
-            <Link href="/about">About</Link>
+            <Link href="/about"><a>About</a></Link>
           </MenuItem>
         </Menu>
       </MenuAnchor>

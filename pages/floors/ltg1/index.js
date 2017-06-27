@@ -1,4 +1,4 @@
-import { Typography, Title, Body2 } from "react-mdc-web/lib/Typography";
+import { Typography } from 'react-mdc-web/lib/Typography'
 import Layout from '../../../components/layout'
 
 export default () => (
