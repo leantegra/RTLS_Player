@@ -5,6 +5,8 @@ import Icon from "react-mdc-web/lib/Icon"
 import Button from "react-mdc-web/lib/Button"
 import { Menu, MenuAnchor, MenuItem } from "react-mdc-web/lib/Menu"
 
+let routeTo = (url) => () => Router.push(url)
+
 class MainMenu extends Component {
   toogler = () => this.setState({ open: !this.state.open })
   state = {}
@@ -19,9 +21,7 @@ class MainMenu extends Component {
           open={this.state.open}
           onClose={()=> this.setState({open:false})}
         >
-          <MenuItem onClick={console.log('About')}>
-            <Link href="/about"><a>About</a></Link>
-          </MenuItem>
+          <MenuItem onClick={ routeTo('/about') }>About</MenuItem>
         </Menu>
       </MenuAnchor>
     )

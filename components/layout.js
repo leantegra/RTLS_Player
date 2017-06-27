@@ -1,14 +1,20 @@
 import Link from 'next/link'
 import Head from 'next/head'
 import { Grid, Cell } from 'react-mdc-web/lib/Grid'
-import { Toolbar, ToolbarRow, ToolbarSection } from 'react-mdc-web/lib/Toolbar'
+import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle } from 'react-mdc-web/lib/Toolbar'
+import Button from 'react-mdc-web/lib/Button'
+
 import MainMenu from './MainMenu'
 
 let MainToolbar = () => (
   <Toolbar>
     <ToolbarRow>
       <ToolbarSection align='start'>
-        <Link href='/'><a>Home</a></Link>
+        <ToolbarTitle>
+          <Link href='/'>
+            <Button>Home</Button>
+          </Link>
+        </ToolbarTitle>
       </ToolbarSection>
       <ToolbarSection />
       <ToolbarSection align='end'>
@@ -35,7 +41,7 @@ export default ({ children, title = 'RTLS player' }) => (
 
     <Grid>
       <Cell col={4} tablet={3}>Nav</Cell>
-      <Cell col={8} tablet={5}>{ children }</Cell>
+      <Cell col={8} tablet={5}>{children}</Cell>
     </Grid>
 
     <footer>
