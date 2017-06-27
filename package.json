@@ -1,0 +1,26 @@
+{
+  "name": "rtls-player",
+  "private": true,
+  "version": "0.0.1",
+  "description": "rtls.com",
+  "main": "index.js",
+  "repository": "",
+  "author": "Dmytro V. Dogadailo <dimad@leantegra.com>",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "prebuild": "npm run build:css",   
+    "build:css": "node scripts/sass-convert.js > ./static/css/global.min.css"  
+  },
+  "dependencies": {
+    "next": "^2.3.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-mdc-web": "^0.12.2"
+  },
+  "devDependencies": {
+    "material-components-web": "^0.12.1",
+    "node-sass": "4.5.3"
+  }
+}

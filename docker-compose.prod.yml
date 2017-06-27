@@ -1,0 +1,9 @@
+version: '3'
+services:
+  app:
+    image: rtls_player
+    command: yarn start
+    ports:
+     - "3040:3000"
+
+  

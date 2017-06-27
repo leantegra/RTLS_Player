@@ -1,0 +1,13 @@
+version: '3'
+services:
+  player:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: yarn dev
+    ports:
+     - "3100:3000"
+    volumes:
+     - .:/opt/rtls-player
+     - /opt/rtls-player/node_modules
+  
