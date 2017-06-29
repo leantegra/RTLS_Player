@@ -32,6 +32,6 @@ let Buttons = () => (
 
 export default () => (
   <Layout title='About us'>
-    <p>RTLS player</p>
+    <p>Leantegra RTLS player</p>
   </Layout>
 )
