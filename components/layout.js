@@ -27,7 +27,7 @@ let MainToolbar = () => (
 
 let Footer = () => (
   <footer>
-      <Body2>&copy; leantegra.com, 2017</Body2>
+    <Body2>&copy; leantegra.com, 2017</Body2>
   </footer>
 )
 /*
@@ -47,9 +47,9 @@ export default ({ children, title = 'RTLS player' }) => (
 
     <Grid>
       <Cell col={8} tablet={5}>{children}</Cell>
-      <Cell col={4} tablet={3}></Cell>
+      <Cell col={4} tablet={3}> </Cell>
     </Grid>
-    
+
     <Footer />
   </div>
 )
