@@ -2,7 +2,7 @@ version: '3'
 services:
   player:
     image: rtls_player
-    command: node ./node_modules/.bin/next start
+    command: node server.js
     user: node
     environment:
       - NODE_ENV=production
