@@ -1,9 +1,11 @@
 version: '3'
 services:
-  app:
+  player:
     image: rtls_player
-    command: yarn start
+    command: node ./node_modules/.bin/next start
+    user: node
+    environment:
+      - NODE_ENV=production
     ports:
-     - "3040:3000"
-
-  
+      - "3100:3000"
+    restart: unless-stopped

@@ -1,13 +1,13 @@
 version: '3'
 services:
   player:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    command: yarn dev
+    build: .
+    # userns_mode: "host" # disable userns mapping for development mode
+    command: ./bin/run-docker-dev.sh
+    environment:
+      - NODE_ENV=development
     ports:
      - "3100:3000"
     volumes:
      - .:/opt/rtls-player
      - /opt/rtls-player/node_modules
-  

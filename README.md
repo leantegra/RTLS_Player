@@ -4,6 +4,7 @@ This tool allow you to play different sequences of coordinates and compare them.
 
 The RTLS player works fully inside Docker and keep node_modules inside Docker image as well. No need to run `npm i` to install modules locally.
 
+Inside docker container node process is run using `node` user (uid=guid=1000), so if you bind volumes to container all files created inside container will be owned by user with uid=1000 on your host.
 
 ## Useful commands
 
@@ -11,7 +12,7 @@ The RTLS player works fully inside Docker and keep node_modules inside Docker im
 docker-compose up
 docker-compose up --build
 docker-compose build
-docker-compose exec player bash
+docker-compose exec --user=node player bash
 
 docker-compose -f docker-compose.prod.yml up -d,
 docker-compose -f docker-compose.prod.yml logs
@@ -20,5 +21,5 @@ docker-compose -f docker-compose.prod.yml logs
 Please add new npm modules inside container only:
 
 ```
-docker-compose exec player yarn add my-module
+docker-compose exec --user=node player yarn add my-module
 ```

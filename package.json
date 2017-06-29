@@ -10,14 +10,15 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "prebuild": "npm run build:css",   
-    "build:css": "node scripts/sass-convert.js > ./static/css/global.min.css"  
+    "prebuild": "npm run build:css",
+    "build:css": "node bin/sass-convert.js > ./static/css/global.min.css"
   },
   "dependencies": {
     "next": "^2.3.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-mdc-web": "^0.12.2"
+    "react-mdc-web": "^0.12.2",
+    "react-svg-pathline": "^0.4.0"
   },
   "devDependencies": {
     "material-components-web": "^0.12.1",
