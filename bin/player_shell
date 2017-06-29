@@ -1,0 +1,7 @@
+#! /bin/bash
+
+ARGS=$@ # all arguments or null
+ARGS=${ARGS:=/bin/bash}
+
+# execute a command inside running player container using node user credentials
+docker-compose exec --user=node player "$ARGS"

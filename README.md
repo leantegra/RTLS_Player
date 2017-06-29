@@ -13,7 +13,7 @@ docker-compose up
 docker-compose up --build
 docker-compose build
 docker-compose exec --user=node player bash
-
+./bin/player_shell
 docker-compose -f docker-compose.prod.yml up -d,
 docker-compose -f docker-compose.prod.yml logs
 ```
@@ -21,5 +21,5 @@ docker-compose -f docker-compose.prod.yml logs
 Please add new npm modules inside container only:
 
 ```
-docker-compose exec --user=node player yarn add my-module
+./bin/player_shell yarn add my-module
 ```
