@@ -1,0 +1,10 @@
+{
+  "slug": "ltg-web-room",
+  "background": {
+    "width": 500,
+    "height": 300,
+    "url": "/static/locations/ltg-web-room/bg.png"
+  },
+  "topLeft": [50, 30],
+  "bottomRight": [51, 29]
+}
