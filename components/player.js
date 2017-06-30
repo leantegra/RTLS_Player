@@ -1,13 +1,17 @@
 import { PureComponent } from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+import { SvgTest } from './track'
 
 import { Display1 } from 'react-mdc-web'
 
 function PlayerCanvas ({meta}) {
   let {width, height, url} = meta.background
   let style = {width, height, backgroundImage: `url(${url})`}
-  console.log('style', style)
-  return (<div style={ style }></div>)
+  return (
+    <div style={ style }>
+      <SvgTest />
+    </div>
+  )
 }
 
 export default class Player extends PureComponent {
