@@ -5,7 +5,7 @@ import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle } from 'react-mdc-web
 import Button from 'react-mdc-web/lib/Button'
 import { Body2 } from 'react-mdc-web/lib/Typography'
 
-import MainMenu from './MainMenu'
+import MainMenu from './main-menu'
 
 let MainToolbar = () => (
   <Toolbar>

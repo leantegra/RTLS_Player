@@ -1,4 +1,5 @@
 import Layout from '../components/layout'
+import {Display1, Body1} from 'react-mdc-web'
 
 /*
 const StyleButton = (props) => (
@@ -32,6 +33,7 @@ let Buttons = () => (
 
 export default () => (
   <Layout title='About us'>
-    <p>Leantegra RTLS player</p>
+    <Display1>Leantegra RTLS player</Display1>
+    <p>Play and visually compare variuos RTLS sessions.</p>
   </Layout>
 )
