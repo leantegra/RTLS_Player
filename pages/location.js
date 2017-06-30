@@ -6,9 +6,9 @@ let locations = [
   { slug: 'ltg-web-room', title: 'LTG Office / Web Room' }
 ]
 
-export default class extends React.Component {
-
-  static async getInitialProps ({ query, res }) {
+export default class Location extends React.Component {
+  static async getInitialProps ({ req, query, res }) {
+    console.log('getInitialProps', query, req && req.path)
     let loc = locations.find(l => l.slug === query.slug)
     if (!loc && res) res.statusCode = 404
     return { loc }
