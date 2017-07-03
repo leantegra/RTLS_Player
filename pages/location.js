@@ -9,16 +9,17 @@ let locations = [
   { slug: 'ltg-web-room', title: 'LTG Office / Web Room' }
 ]
 
+// FIX: load from server
+let sessionIds = ['dynamic_3wb_tx5_adv500_first.json']
+
 async function loadMeta(slug) {
   return fetch(`/static/locations/${slug}/meta.json`)
     .then((res) => res.json())
 }
 
 async function loadSessions(slug) {
-  return Promise.resolve({
-    slug,
-    sessions: []
-  })
+  let files = await Promise.all(sessionIds.map(s => fetch(`/static/locations/${slug}/${s}`).then(r => r.json())))
+  return files.filter(Boolean)
 }
 
 export default class Location extends Component {
@@ -32,9 +33,9 @@ export default class Location extends Component {
 
   /* Load meta and sessions on client only. */
   async componentDidMount() {
-    console.log('Location didMount')
     let meta = await loadMeta(this.props.location.slug)
-    this.setState({ meta })
+    let sessions = await loadSessions(this.props.location.slug)
+    this.setState({ meta, sessions })
   }
 
   render() {
