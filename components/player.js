@@ -13,7 +13,6 @@ function PlayerCanvas ({meta, tracks}) {
   }
   return (
     <div style={ style }>
-      <SvgTest />
       {tracks.map((t, i) => (<Track key={i} width={meta.width} height={meta.height} points={t} />))}
     </div>
   )

@@ -23,3 +23,6 @@ Please add new npm modules inside container only:
 ```
 ./bin/player_shell yarn add my-module
 ```
+
+## TODO
+- Add session meta (length, device count, geojson rect etc)
