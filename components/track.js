@@ -16,13 +16,17 @@ export class Track extends Component {
     return (<svg style={style}>
       <PathLine
         points={this.getVisiblePoints()}
-        stroke='red'
+        stroke={this.props.color || 'red'}
         strokeWidth='3'
         fill='none'
         r={0}
       />
     </svg>)
   }
+}
+
+Track.defaultProperties = {
+  color: 'red'
 }
 
 export class SvgTest extends React.Component {

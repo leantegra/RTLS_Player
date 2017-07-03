@@ -4,6 +4,8 @@ import { SvgTest, Track } from './track'
 
 import { Display1 } from 'react-mdc-web'
 
+const COLORS = ['red', 'green', 'orange']
+
 function PlayerCanvas ({meta, tracks}) {
   let style = {
     width: meta.width,
@@ -13,14 +15,16 @@ function PlayerCanvas ({meta, tracks}) {
   }
   return (
     <div style={ style }>
-      {tracks.map((t, i) => (<Track key={i} width={meta.width} height={meta.height} points={t} />))}
+      {tracks.map((t, i) => (
+        <Track key={i} width={meta.width} height={meta.height} points={t} color={COLORS[i]}/>
+        )
+      )}
     </div>
   )
 }
 
 // translate geojson to canvas coordinates
 function translate (lon, lat, loc) {
-
   let x = loc.width * (lon - loc.topLeft[0]) / (loc.bottomRight[0] - loc.topLeft[0])
   let y = loc.height * (loc.topLeft[1] - lat) / (loc.topLeft[1] - loc.bottomRight[1])
   return {x: Math.round(x), y: Math.round(y)}
