@@ -1,4 +1,5 @@
 import { PureComponent } from 'react'
+import {IconToggle} from 'react-mdc-web'
 
 export default class Timer extends PureComponent {
 
@@ -6,28 +7,33 @@ export default class Timer extends PureComponent {
     start: 0,
     end: 0,
     time: 0,
-    speed: 1.0
+    speed: 2.0,
+    stopped: true
   }
 
   constructor (props) {
     super(props)
-    this.start()
   }
 
   render () {
-    let {time} = this.state
+    let {time, stopped} = this.state
     let style = {
     }
     return (
       <div style={style}>
+        <IconToggle className="material-icons" onClick={this.toggle}> 
+          {(this.state.stopped ? 'play': 'pause') + '_circle_outline'}
+        </IconToggle>
+
         Time: { time / 1000 }s
       </div>
     )
   }
 
-  tick = () => {
+  tick = (force) => {
     let {time, speed, stopped} = this.state
-    if (stopped) return;
+    console.log('tick', time, stopped, force)
+    if (stopped && !force) return;
     time += 1000
     this.setState({time})
     this.props.onTick(time)
@@ -41,11 +47,12 @@ export default class Timer extends PureComponent {
 
   start() {
     this.setState({
-      time: 0,
-      stopped: false,
+      stopped: false
     })
-    this.tick()
+    this.tick(true)
   }
+
+  toggle = () => this.state.stopped ? this.start() : this.stop()
 }
 
 Timer.defaultProps = {
