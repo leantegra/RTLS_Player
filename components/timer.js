@@ -1,5 +1,5 @@
-import { PureComponent } from 'react'
-import {IconToggle} from 'react-mdc-web'
+import {PureComponent} from 'react'
+import {IconToggle, LinearProgress} from 'react-mdc-web'
 
 export default class Timer extends PureComponent {
 
@@ -17,14 +17,12 @@ export default class Timer extends PureComponent {
 
   render () {
     let {time, stopped} = this.state
-    let style = {
-    }
     return (
-      <div style={style}>
+      <div>
         <IconToggle className="material-icons" onClick={this.toggle}> 
           {(this.state.stopped ? 'play': 'pause') + '_circle_outline'}
         </IconToggle>
-
+        <LinearProgress accent progress={time / this.props.max} style={{width: '100%'}}/>
         Time: { time / 1000 }s
       </div>
     )
