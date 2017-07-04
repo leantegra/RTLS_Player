@@ -4,7 +4,7 @@ import { SvgTest, Track } from './track'
 
 import { Display1 } from 'react-mdc-web'
 
-const COLORS = ['red', 'green', 'orange']
+const COLORS = ['red', 'green', 'orange', 'blue', 'yellow', 'pink']
 
 function PlayerCanvas ({meta, tracks}) {
   let style = {
