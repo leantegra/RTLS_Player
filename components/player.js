@@ -1,6 +1,6 @@
 import { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { SvgTest, Track } from './track'
+import Track from './track'
 import Timer from './timer'
 import { Display1 } from 'react-mdc-web'
 
@@ -11,7 +11,7 @@ function PlayerCanvas ({meta, tracks, time}) {
   let style = {
     width: meta.width,
     height: meta.height,
-    padding: `${PLAYER_PADDING}px`, 
+    border: `#f0f0f0 ${PLAYER_PADDING}px solid`, 
     background: `url(${meta.backgroundUrl}) no-repeat center`,
     position: 'relative'
   }
@@ -20,9 +20,7 @@ function PlayerCanvas ({meta, tracks, time}) {
       {tracks.map((t, i) => (
         <Track key={i} width={meta.width} height={meta.height} 
           points={t} color={COLORS[i]} start={0} end={time}
-          padding={PLAYER_PADDING}
-          />
-
+        />
         )
       )}
     </div>
@@ -73,6 +71,7 @@ export default class Player extends PureComponent {
 }
 
 Player.defaultProps = {
+  meta: {}
 }
 
 Player.propTypes = {

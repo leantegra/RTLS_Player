@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { PathLine } from 'react-svg-pathline'
 
-export class Track extends Component {
+export default class Track extends Component {
 
   getVisiblePoints () {
     let {points, start, end, color} = this.props
@@ -15,8 +15,8 @@ export class Track extends Component {
     let style = {
       width: this.props.width,
       height: this.props.height,
-      padding: '0px',
-      position: 'absolute'
+      position: 'absolute',
+      overflow: 'visible'
     }
     let points = this.getVisiblePoints()
     if (!points || !points.length) return null
@@ -52,5 +52,3 @@ export class SvgTest extends React.Component {
     </svg>)
   }
 }
-
-export default SvgTest
