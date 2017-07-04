@@ -9,27 +9,25 @@ let TimeField = ({ time, onChange }) => (
   />
 )
 
-let SpeedField = ({ speed, onChange }) => (
-  <div>
-    <FormField id="radio-speed-1">
+function SpeedField ({ speed, onChange }) {
+  let makeRadio = (value) => (
+    <FormField id="radio-speed-{value}" key={value}>
       <Radio
         name="speed"
-        value="1"
-        checked={speed === 1}
+        value={value}
+        onChange={onChange}
+        checked={speed === value}
       />
-      <label>1x</label>
+      <label>{value}x</label>
     </FormField>
-    <FormField id="radio-speed-2">
-      <Radio
-        name="speed"
-        value="2"
-        checked={speed === 2}        
-      />
-      <label>2x</label>
-    </FormField>
+  )
 
-  </div>
-)
+  return (
+    <div>
+      {[1, 2, 4, 8].map(makeRadio)}
+    </div>
+  )
+}
 
 export default class Timer extends PureComponent {
 
@@ -58,7 +56,7 @@ export default class Timer extends PureComponent {
           <TimeField time={time} onChange={this.onTimeChange} />
         </Cell>
         <Cell col={8} align="middle">
-          <SpeedField speed={speed} />
+          <SpeedField speed={speed} onChange={this.onSpeedChange} />
         </Cell>
 
       </Grid>
@@ -71,6 +69,11 @@ export default class Timer extends PureComponent {
     let time = +value * 1000
     if (typeof time !== 'number' || time < 0 || time > this.props.max) return
     this.setState({ time })
+  }
+
+  onSpeedChange = ({ target: { name, value, checked } }) => {
+    console.log('onSpeed', name, value, checked)
+    this.setState({ speed: +value })
   }
 
   tick = (force) => {
