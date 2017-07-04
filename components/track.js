@@ -4,7 +4,8 @@ import { PathLine } from 'react-svg-pathline'
 export class Track extends Component {
 
   getVisiblePoints () {
-    return this.props.points
+    let {points, start, end} = this.props
+    return points.filter(p => (p.ts >= start && p.ts <= end))
   }
 
   render () {
@@ -16,7 +17,7 @@ export class Track extends Component {
     return (<svg style={style}>
       <PathLine
         points={this.getVisiblePoints()}
-        stroke={this.props.color || 'red'}
+        stroke={this.props.color}
         strokeWidth='3'
         fill='none'
         r={0}
@@ -25,8 +26,11 @@ export class Track extends Component {
   }
 }
 
-Track.defaultProperties = {
-  color: 'red'
+Track.defaultProps = {
+  color: 'red',
+  points: [],
+  start: 0,
+  end: 10000
 }
 
 export class SvgTest extends React.Component {
