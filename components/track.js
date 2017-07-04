@@ -15,6 +15,7 @@ export class Track extends Component {
     let style = {
       width: this.props.width,
       height: this.props.height,
+      padding: '0px',
       position: 'absolute'
     }
     let points = this.getVisiblePoints()

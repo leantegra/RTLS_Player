@@ -1,5 +1,5 @@
 import { PureComponent } from 'react'
-import { Grid, Cell, Textfield, IconToggle, LinearProgress, FormField, Radio } from 'react-mdc-web'
+import { Grid, Cell, Textfield, IconToggle, LinearProgress, FormField, Radio, Icon, Button } from 'react-mdc-web'
 
 let TimeField = ({ time, onChange }) => (
   <Textfield
@@ -40,27 +40,55 @@ export default class Timer extends PureComponent {
   }
 
 
-  render() {
-    let { time, speed, stopped } = this.state
+  renderTimeline() {
+    let { time, stopped } = this.state
+    let progress = time / (this.props.max || 1)
     return (
       <Grid>
+        <Cell col={1} align="middle">
+          <IconToggle className="material-icons" onClick={() => this.stop(0)}>
+            skip_previous
+          </IconToggle>
+        </Cell>
         <Cell col={1} align="middle">
           <IconToggle className="material-icons" onClick={this.toggle}>
             {(this.state.stopped ? 'play' : 'pause') + '_circle_outline'}
           </IconToggle>
         </Cell>
-        <Cell col={11} align="middle">
-          <LinearProgress accent progress={time / this.props.max} />
+        <Cell col={1} align="middle">
+          <IconToggle className="material-icons" onClick={() => this.stop(this.props.max)}>
+            skip_next
+          </IconToggle>
         </Cell>
+        
+        <Cell col={9} align="middle">
+          <LinearProgress accent progress={progress} />
+        </Cell>
+
+      </Grid>
+    )
+  }
+
+  renderFields() {
+    let { time, speed } = this.state
+    return (
+      <Grid>
         <Cell col={4} align="middle">
           <TimeField time={time} onChange={this.onTimeChange} />
         </Cell>
         <Cell col={8} align="middle">
           <SpeedField speed={speed} onChange={this.onSpeedChange} />
         </Cell>
-
       </Grid>
-
+    )
+  }
+  
+  render() {
+    return (
+      <div>
+        { this.renderTimeline() }
+        { this.renderFields() }
+      </div>  
     )
   }
 
@@ -79,16 +107,17 @@ export default class Timer extends PureComponent {
   tick = (force) => {
     let { time, speed, stopped } = this.state
     console.log('tick', time, stopped, force)
+    this.props.onTick(time)
     if (stopped && !force) return;
     time += 1000
     this.setState({ time })
-    this.props.onTick(time)
     if (time > this.props.max) this.stop()
     else setTimeout(this.tick, 1000 / speed)
   }
 
-  stop() {
-    this.setState({ stopped: true })
+  stop(time) {
+    this.setState({stopped: true })
+    if (time !== undefined) this.setState({time})
   }
 
   start() {

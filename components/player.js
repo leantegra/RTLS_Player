@@ -5,19 +5,23 @@ import Timer from './timer'
 import { Display1 } from 'react-mdc-web'
 
 const COLORS = ['red', 'green', 'orange', 'blue', 'yellow', 'pink']
+const PLAYER_PADDING = 100;
 
 function PlayerCanvas ({meta, tracks, time}) {
   let style = {
     width: meta.width,
     height: meta.height,
-    backgroundImage: `url(${meta.backgroundUrl})`,
+    padding: `${PLAYER_PADDING}px`, 
+    background: `url(${meta.backgroundUrl}) no-repeat center`,
     position: 'relative'
   }
   return (
     <div style={ style }>
       {tracks.map((t, i) => (
         <Track key={i} width={meta.width} height={meta.height} 
-          points={t} color={COLORS[i]} start={0} end={time}/>
+          points={t} color={COLORS[i]} start={0} end={time}
+          padding={PLAYER_PADDING}
+          />
 
         )
       )}
