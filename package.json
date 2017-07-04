@@ -22,7 +22,7 @@
     "react-svg-pathline": "^0.4.0"
   },
   "devDependencies": {
-    "material-components-web": "^0.12.1",
+    "material-components-web": "^0.14.0",
     "node-sass": "4.5.3"
   }
 }
