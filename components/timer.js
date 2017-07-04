@@ -1,5 +1,13 @@
 import {PureComponent} from 'react'
-import {Grid, Cell, IconToggle, LinearProgress} from 'react-mdc-web'
+import {Grid, Cell, Textfield, IconToggle, LinearProgress} from 'react-mdc-web'
+
+let TimeField = ({time, onChange}) => (
+  <Textfield
+    helptext="Duration, sec"
+    value={time / 1000}
+    onChange={onChange}
+  />
+)
 
 export default class Timer extends PureComponent {
 
@@ -11,9 +19,6 @@ export default class Timer extends PureComponent {
     stopped: true
   }
 
-  constructor (props) {
-    super(props)
-  }
 
   render () {
     let {time, speed, stopped} = this.state
@@ -24,20 +29,26 @@ export default class Timer extends PureComponent {
             {(this.state.stopped ? 'play': 'pause') + '_circle_outline'}
           </IconToggle>
         </Cell>
-        <Cell col={5}>
-          cELL2
+        <Cell col={7}>
           <LinearProgress accent progress={time / this.props.max} />  
         </Cell>
-        <Cell col={3}>
-              Time: { time / 1000 }s
+        <Cell col={2}>
+          <TimeField time={time} onChange={this.onTimeChange} />
         </Cell>
-        <Cell col={3}>
+        <Cell col={2}>
               Speed: { speed }s
         </Cell>
         
       </Grid>
 
     )
+  }
+
+  onTimeChange = ({target: {value}}) => {
+    // FIX
+    let time = +value * 1000
+    if (typeof time !== 'number' || time < 0 || time > this.props.max) return
+    this.setState({time})
   }
 
   tick = (force) => {
