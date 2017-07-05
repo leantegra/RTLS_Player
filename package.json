@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "prebuild": "npm run build:css",
-    "build:css": "node bin/sass-convert.js > ./static/css/global.min.css"
+    "build:css": "mkdir -p ./static/css && node bin/sass-convert.js > ./static/css/global.min.css"
   },
   "dependencies": {
     "next": "^2.3.1",
