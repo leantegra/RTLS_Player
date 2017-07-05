@@ -61,12 +61,13 @@ export default class Player extends PureComponent {
   render() {
     let { meta, sessions } = this.props
     let { tracks, time, tail } = this.state
+    console.log(`Player time=${time}, tail=${tail}`)
     tracks = sessions && sessions.map(s => makeTrack(meta, s)) || []
     let maxTime = tracks.reduce((acc, t) => Math.max(acc, t[t.length -1].ts), 0)
     if (!meta) return null;
     return (
       <div>
-        <PlayerCanvas meta={meta} tracks={tracks} time={time} tail={tail}/>
+        <PlayerCanvas meta={meta} tracks={tracks} time={time} tail={tail} />
         <Timer onTick={this.onTick} max={maxTime} width={meta.width + 2 * PLAYER_PADDING} />
       </div>
     )

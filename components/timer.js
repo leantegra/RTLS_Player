@@ -89,7 +89,7 @@ export default class Timer extends PureComponent {
     this.setState({ time })
   }
 
-  onTailChange = ({target: {value}}) => this.setState({tail: value})
+  onTailChange = ({target: {value}}) => this.setState({tail: +value})
 
   onSpeedChange = ({ target: { name, value, checked } }) => {
     this.setState({ speed: +value })
@@ -97,7 +97,7 @@ export default class Timer extends PureComponent {
 
   tick = () => {
     let { time, speed, tail, stopped } = this.state
-    console.log('tick', time, stopped)
+    console.log('tick', time, tail, stopped)
     this.props.onTick(time, tail)
     if (stopped) return;
     time += 1000
