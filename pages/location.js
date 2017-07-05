@@ -10,7 +10,13 @@ let locations = [
 ]
 
 // FIX: load from server
-let sessionIds = ['dynamic_3wb_tx5_adv500_first.json', 'dynamic_T_3wb_tx5_adv500.json']
+let sessionIds = [
+  'dynamic_3wb_tx5_adv500_first.json', 
+  'dynamic_3wb_tx5_adv500-h10_sh1.5.json',
+  'dynamic_3wb_tx5_adv500-h5_sh2.json',
+  //'dynamic_T_3wb_tx5_adv500.json',
+  //'dynamic_T_3wb_tx5_adv500-h10_sh1.5.json'
+]
 
 async function loadMeta(slug) {
   return fetch(`/static/locations/${slug}/meta.json`)
