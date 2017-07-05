@@ -11,11 +11,27 @@ let locations = [
 
 // FIX: load from server
 let sessionIds = [
-  'dynamic_3wb_tx5_adv500_first.json', 
-  'dynamic_3wb_tx5_adv500-h10_sh1.5.json',
-  'dynamic_3wb_tx5_adv500-h5_sh2.json',
-  //'dynamic_T_3wb_tx5_adv500.json',
-  //'dynamic_T_3wb_tx5_adv500-h10_sh1.5.json'
+  // 'dynamic_3wb_tx5_adv500_first.json', 
+  // 'dynamic_3wb_tx5_adv500-h10_sh1.5.json',
+  // 'dynamic_3wb_tx5_adv500-h5_sh2.json',
+  // 'dynamic_3wb_tx5_adv500-lp0.1.json',
+  // 'dynamic_3wb_tx5_adv500-lp0.2.json',
+  // 'dynamic_3wb_tx5_adv500-lp0.3.json',
+  //'dynamic_3wb_tx5_adv500-lp0.1-h10_sh1.5.json',
+  //'dynamic_3wb_tx5_adv500-lp0.2_h10_sh1.5.json',
+  //'dynamic_3wb_tx5_adv500-lp0.3_h10_sh1.5.json',
+  // 'dynamic_3wb_tx5_adv500_first_lp0.17_A28_n5.34.json',
+  // 'dynamic_3wb_tx5_adv100_first_lp0.17_A28_n5.34.json',
+  // 'dynamic_3wb_tx5_adv100_first_lp0.1_A28_n5.34.json',
+  // 'dynamic_3wb_tx5_adv100_first_lp0.1_A48_n2.8.json',
+  
+  'dynamic_T_3wb_tx5_adv500.json',
+  'dynamic_T_3wb_tx5_adv500-lp0.2.json',
+  // 'dynamic_T_3wb_tx5_adv500-lp0.3.json',
+  'dynamic_T_3wb_tx5_adv500-h10_sh1.5.json',
+  // 'dynamic_T_3wb_tx5_adv500-lp0.3_A28_n5.34.json',
+  //'dynamic_T_3wb_tx5_adv500_lp0.1_h10_sh1.5.json',
+  //'dynamic_T_3wb_tx5_adv500_lp0.2_h10_sh1.5.json',
 ]
 
 async function loadMeta(slug) {

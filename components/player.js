@@ -11,7 +11,7 @@ function PlayerCanvas ({meta, tracks, time, tail}) {
   let style = {
     width: meta.width,
     height: meta.height,
-    border: `#f0f0f0 ${PLAYER_PADDING}px solid`, 
+    border: `#f0f0f0 ${PLAYER_PADDING}px solid`,
     background: `url(${meta.backgroundUrl}) no-repeat center`,
     position: 'relative'
   }
@@ -19,7 +19,7 @@ function PlayerCanvas ({meta, tracks, time, tail}) {
   return (
     <div style={ style }>
       {tracks.map((t, i) => (
-        <Track key={i} width={meta.width} height={meta.height} 
+        <Track key={i} width={meta.width} height={meta.height}
           points={t} color={COLORS[i]} start={start} end={time}
         />
         )
@@ -37,7 +37,7 @@ function translate (lon, lat, loc) {
 
 
 function makeTrack(loc, session, mac) {
-  let start = session[0].timestamp;
+  let start = session[0].timestamp
   if (!mac) mac = session[0].devices[0].id
   return session.map(tick => {
       let device = tick.devices.filter(d => d.id === mac)[0]
@@ -56,8 +56,8 @@ export default class Player extends PureComponent {
     tracks: [],
   }
 
-  onTick = (time, tail) => this.setState({time, tail}) 
-  
+  onTick = (time, tail) => this.setState({time, tail})
+
   render() {
     let { meta, sessions } = this.props
     let { tracks, time, tail } = this.state
