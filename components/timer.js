@@ -1,14 +1,6 @@
 import { PureComponent } from 'react'
 import { Grid, Cell, Textfield, IconToggle, LinearProgress, FormField, Radio, Icon, Button } from 'react-mdc-web'
 
-let TimeField = ({ time, onChange }) => (
-  <Textfield
-    helptext="Duration, sec"
-    value={time / 1000}
-    onChange={onChange}
-  />
-)
-
 function SpeedControl ({ speed, onChange }) {
   let radioField = (value) => (
     <FormField id="radio-speed-{value}" key={value}>
@@ -36,15 +28,21 @@ export default class Timer extends PureComponent {
     end: 0,
     time: 0,
     speed: 2,
+    tail: 0,
     stopped: true
   }
 
 
   renderTimeline() {
-    let { time, stopped } = this.state
+    let { time, speed, stopped, tail } = this.state
     let progress = time / (this.props.max || 1)
+    let maxSeconds = this.props.max / 1000;
+    
     return (
       <Grid>
+        <Cell col={12}>
+          <LinearProgress accent progress={progress} />
+        </Cell>
         <Cell col={1} align="middle">
           <IconToggle className="material-icons" onClick={() => this.stop(0)}>
             skip_previous
@@ -60,54 +58,47 @@ export default class Timer extends PureComponent {
             skip_next
           </IconToggle>
         </Cell>
-        
-        <Cell col={9} align="middle">
-          <LinearProgress accent progress={progress} />
+        <Cell col={2} align="middle">
+          <input onChange={this.onTimeChange} value={time/1000} 
+            type="number" style={{width: '40px'}}/>/{maxSeconds}s
         </Cell>
-
-      </Grid>
-    )
-  }
-
-  renderFields() {
-    let { time, speed } = this.state
-    return (
-      <Grid>
-        <Cell col={4} align="middle">
-          <TimeField time={time} onChange={this.onTimeChange} />
-        </Cell>
-        <Cell col={8} align="middle">
+        <Cell col={5} align="middle">
           <SpeedControl speed={speed} onChange={this.onSpeedChange} />
         </Cell>
+        <Cell col={2} align="middle">
+          <input onChange={this.onTailChange} title="Video tail, seconds" value={tail} 
+            type="number" style={{width: '40px'}}/>s
+        </Cell>
+        
       </Grid>
     )
   }
-  
+
   render() {
     return (
-      <div>
+      <div style={{width: this.props.width}}>
         { this.renderTimeline() }
-        { this.renderFields() }
       </div>  
     )
   }
 
-  onTimeChange = ({ target: { value } }) => {
+  onTimeChange = ({target: {value}}) => {
     // FIX
     let time = +value * 1000
     if (typeof time !== 'number' || time < 0 || time > this.props.max) return
     this.setState({ time })
   }
 
+  onTailChange = ({target: {value}}) => this.setState({tail: value})
+
   onSpeedChange = ({ target: { name, value, checked } }) => {
-    console.log('onSpeed', name, value, checked)
     this.setState({ speed: +value })
   }
 
   tick = () => {
-    let { time, speed, stopped } = this.state
+    let { time, speed, tail, stopped } = this.state
     console.log('tick', time, stopped)
-    this.props.onTick(time)
+    this.props.onTick(time, tail)
     if (stopped) return;
     time += 1000
     this.setState({ time })
@@ -132,3 +123,14 @@ export default class Timer extends PureComponent {
 Timer.defaultProps = {
   max: 5 * 60 * 1000
 }
+
+/*
+let TimeField = ({ time, onChange }) => (
+
+<Textfield
+    helptext="Duration, sec"
+    value={time / 1000}
+    onChange={onChange}
+  />
+)
+*/
