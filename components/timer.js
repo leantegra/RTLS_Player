@@ -59,7 +59,7 @@ export default class Timer extends PureComponent {
           </IconToggle>
         </Cell>
         <Cell col={2} align="middle">
-          <input onChange={this.onTimeChange} value={time/1000} 
+          <input onChange={this.onTimeChange} value={time/1000} title="Video offset, sec"
             type="number" style={{width: '40px'}}/>/{maxSeconds}s
         </Cell>
         <Cell col={5} align="middle">
