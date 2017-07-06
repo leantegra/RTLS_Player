@@ -51,7 +51,7 @@ function makeTrack(loc, session, mac) {
 
 export default class Player extends PureComponent {
   state = {
-    time: 0,
+    time: -1,
     tail: 0,
     tracks: [],
   }
@@ -64,10 +64,11 @@ export default class Player extends PureComponent {
     console.log(`Player time=${time}, tail=${tail}`)
     tracks = sessions && sessions.map(s => makeTrack(meta, s)) || []
     let maxTime = tracks.reduce((acc, t) => Math.max(acc, t[t.length -1].ts), 0)
+    if (time < 0) time = maxTime; 
     if (!meta) return null;
     return (
       <div>
-        <PlayerCanvas meta={meta} tracks={tracks} time={time} tail={tail} />
+        <PlayerCanvas meta={meta} tracks={tracks} time={time } tail={tail} />
         <Timer onTick={this.onTick} max={maxTime} width={meta.width + 2 * PLAYER_PADDING} />
       </div>
     )
