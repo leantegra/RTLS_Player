@@ -4,3 +4,4 @@ npm-debug.log
 *.log
 .vscode/
 static/css
+static/locations/ltg-web-room/temp.json
