@@ -112,7 +112,10 @@ export default class Timer extends PureComponent {
   }
 
   start() {
+    let time = this.state.time;
+    if (time >= this.props.max) time = 0; // rewind to start
     this.setState({
+      time,
       stopped: false
     }, this.tick)
   }
