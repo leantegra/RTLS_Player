@@ -13,8 +13,9 @@ let locations = [
 let sessionIds = [
   'dynamic_3wb_tx5_adv500_first.json',
   // 'dynamic_3wb_tx5_adv500_first_n2.9_sh1.5_C1.3A-8.json',
+  'dynamic_3wb_tx5_adv500_first_A55_n3.2_lp0.3_sh1.5.json',
   'dynamic_3wb_tx5_adv500_first_A55_n3.2_sh1.5.json',
-
+  'dynamic_3wb_tx5_adv500_first_A47_n3.8_lp0.2_sh1.5.json',
 
   //'dynamic_3wb_tx5_adv500_first_n4_sh1.5.json',
   //'dynamic_3wb_tx5_adv500_first_lp0.3_Adivrssi.json',
