@@ -32,7 +32,7 @@ let Footer = () => (
 )
 /*
 */
-export default ({ children, title = 'RTLS player' }) => (
+export default ({ children, sidebar, title = 'RTLS player' }) => (
   <div>
     <Head>
       <title>{title}</title>
@@ -47,7 +47,7 @@ export default ({ children, title = 'RTLS player' }) => (
 
     <Grid>
       <Cell col={8} tablet={5}>{children}</Cell>
-      <Cell col={4} tablet={3}> </Cell>
+      <Cell col={4} tablet={3}>{sidebar || null}</Cell>
     </Grid>
 
     <Footer />

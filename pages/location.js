@@ -3,6 +3,7 @@ import { Component } from 'react'
 import PropTypes from 'prop-types';
 import Layout from '../components/layout'
 import Player from '../components/player'
+import SessionList from '../components/session-list'
 import { Display1 } from 'react-mdc-web'
 
 let locations = [
@@ -95,10 +96,12 @@ export default class Location extends Component {
   render() {
     let { location } = this.props
     let { meta, sessions } = this.state
+    let sidebar = location && <SessionList location={location} files={sessionIds} /> || null
     return (
-      <Layout>
+      <Layout sidebar={sidebar}>
         <Display1>{location && location.title || 'Unknown'}</Display1>
         <Player meta={meta} sessions={sessions} />
+
       </Layout>
     )
   }
