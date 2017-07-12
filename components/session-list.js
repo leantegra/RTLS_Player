@@ -2,13 +2,39 @@ import { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { SvgTest } from './track'
 
-import { Headline, List, ListItem, ListGroup, ListHeader, Icon, IconToggle, RadioGroup, Radio } from 'react-mdc-web'
+import { Headline, List, ListItem, ListGroup, ListHeader, Icon, Checkbox } from 'react-mdc-web'
 import {getSessionDeviceIds, makeTrack} from '../utils/session'
 
-function SessionTrackList({ tracks }) {
+class TrackListItem extends PureComponent  {
+  state = {
+    checked: false
+  }
+
+  onStateChange = ({target: {checked}}) => {
+    let {track, onChange} = this.props
+    onChange({track, checked})
+    this.setState({checked})
+  }
+
+  render () {
+    let {track} = this.props
+    let {checked} = this.state
+    return (
+      <ListItem>
+        <Checkbox 
+          onChange={this.onStateChange}
+          checked={checked}
+        />
+        <label>{track.id}</label>
+      </ListItem>
+    )
+  }
+}
+
+function TrackList({tracks, onTrackChange}) {
   return (
     <List>
-      {tracks.map(track => (<ListItem>{track.id}</ListItem>))}
+      {tracks.map(track => (<TrackListItem track={track} key={track.id} onChange={onTrackChange} />))}
     </List>
   )
 }
@@ -44,12 +70,12 @@ class SessionListItem extends PureComponent {
   }
 
   render() {
-    let { file } = this.props;
+    let { file, onTrackChange } = this.props;
     let { expanded, tracks } = this.state
     return (
       <ListHeader>
         <span onClick={() => this.toggle()}>{file} (0/0)</span>
-        {expanded && tracks.length ? <SessionTrackList tracks={tracks} /> : ''}
+        {expanded && tracks.length ? <TrackList tracks={tracks} onTrackChange={onTrackChange} /> : ''}
         <style jsx>{`
           span:hover {
             cursor: pointer;
@@ -66,6 +92,14 @@ export default class SessionList extends PureComponent {
     timestamp: 0
   }
 
+  onTrackChange = ({track, checked}) => {
+    let {tracks} = this.state
+    if (checked) tracks = tracks.concat(track)
+    else tracks = tracks.filter(t => t !== track)
+    console.log('onTrackChange', tracks)
+    this.setState({tracks})
+  }
+
   render() {
     let { files, location } = this.props
     let { tracks, timestamp } = this.state
@@ -74,7 +108,7 @@ export default class SessionList extends PureComponent {
         <Headline>RTLS sessions</Headline>
         <ListGroup>
           {files.map(file => (
-            <SessionListItem location={location} file={file} key={file} />
+            <SessionListItem location={location} file={file} key={file} onTrackChange={this.onTrackChange} />
           ))}
         </ListGroup>
       </div>
