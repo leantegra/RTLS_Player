@@ -5,7 +5,7 @@ import { SvgTest } from './track'
 import { Headline, List, ListItem, ListGroup, ListHeader, Icon, IconToggle, RadioGroup, Radio } from 'react-mdc-web'
 
 function DeviceList({ data }) {
-  let macs = data[0] &&  data[0].devices.map(d => d.id).sort() || []
+  let macs = data[0] && data[0].devices.map(d => d.id).sort() || []
   return (
     <List>
       {macs.map(mac => (<ListItem>{mac}</ListItem>))}
@@ -28,6 +28,7 @@ class SessionListItem extends PureComponent {
     console.log('fetchSession', location, file, loading)
     try {
       data = await fetch(`/static/locations/${location.slug}/${file}`).then(r => r.json())
+      // FIX: convert to tracks all devices
       loaded = true
     } finally {
       loading = false
@@ -46,9 +47,13 @@ class SessionListItem extends PureComponent {
     let { expanded, data } = this.state
     return (
       <ListHeader>
-        {file}
-        <Icon name={expanded ? 'expand_less' : 'expand_more'} onClick={() => this.toggle()} />
+        <span onClick={() => this.toggle()}>{file} (0/0)</span>
         {expanded && data.length ? <DeviceList data={data} /> : ''}
+        <style jsx>{`
+          span:hover {
+            cursor: pointer;
+          }
+       `}</style>
       </ListHeader>
     )
   }
