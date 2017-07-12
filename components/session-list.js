@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { SvgTest } from './track'
 
 import { Headline, List, ListItem, ListGroup, ListHeader, Icon, IconToggle, RadioGroup, Radio } from 'react-mdc-web'
+import {getSessionDeviceIds, makeTrack} from '../utils/session'
 
-function DeviceList({ data }) {
-  let macs = data[0] && data[0].devices.map(d => d.id).sort() || []
+function SessionTrackList({ tracks }) {
   return (
     <List>
-      {macs.map(mac => (<ListItem>{mac}</ListItem>))}
+      {tracks.map(track => (<ListItem>{track.id}</ListItem>))}
     </List>
   )
 }
@@ -19,36 +19,37 @@ class SessionListItem extends PureComponent {
     expanded: false,
     loading: false,
     loaded: false,
-    data: []
+    tracks: []
   }
 
-  async fetchSession() {
+  async loadTracks() {
     let { location, file } = this.props
-    let { loading, loaded, data } = this.state
+    let { loading, loaded, tracks } = this.state
     console.log('fetchSession', location, file, loading)
     try {
-      data = await fetch(`/static/locations/${location.slug}/${file}`).then(r => r.json())
-      // FIX: convert to tracks all devices
+      let session = await fetch(`/static/locations/${location.slug}/${file}`).then(r => r.json())
+      let ids = getSessionDeviceIds(session)
+      tracks = ids.map(id => makeTrack(location, session, id))
       loaded = true
     } finally {
       loading = false
     }
-    this.setState({ loading, loaded, data })
+    this.setState({ loading, loaded, tracks })
   }
 
   toggle() {
     let { expanded, loading, loaded, data } = this.state
     this.setState({ expanded: !expanded })
-    if (!loaded && !loading) this.fetchSession()
+    if (!loaded && !loading) this.loadTracks()
   }
 
   render() {
     let { file } = this.props;
-    let { expanded, data } = this.state
+    let { expanded, tracks } = this.state
     return (
       <ListHeader>
         <span onClick={() => this.toggle()}>{file} (0/0)</span>
-        {expanded && data.length ? <DeviceList data={data} /> : ''}
+        {expanded && tracks.length ? <SessionTrackList tracks={tracks} /> : ''}
         <style jsx>{`
           span:hover {
             cursor: pointer;

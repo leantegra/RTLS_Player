@@ -96,7 +96,7 @@ export default class Location extends Component {
   render() {
     let { location } = this.props
     let { meta, sessions } = this.state
-    let sidebar = location && <SessionList location={location} files={sessionIds} /> || null
+    let sidebar = meta && <SessionList location={meta} files={sessionIds} /> || null
     return (
       <Layout sidebar={sidebar}>
         <Display1>{location && location.title || 'Unknown'}</Display1>
