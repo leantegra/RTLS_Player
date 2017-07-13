@@ -65,9 +65,13 @@ let sessionIds = [
   // 'dynamic_T_3wb_tx5_adv500-lp0.3_A28_n5.34.json',
   // 'dynamic_T_3wb_tx5_adv500_lp0.1_h10_sh1.5.json',
   // 'dynamic_T_3wb_tx5_adv500_lp0.2_h10_sh1.5.json',
-  // user in same place
-  '4wr_spin_0607.json',
+  
+  'static_13wb_tx5_adv500.json',
   'static_13wb_tx5_adv500_A55_n3.2_lp0.2_sh1.5.json',
+  'static_13wb_tx5_adv500_A55_n3.2_sh1.5.json',
+
+  '4wr_spin_0607.json', // rotating in same place
+
   'temp.json'
 ]
 
