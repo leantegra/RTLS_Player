@@ -45,6 +45,12 @@ class TrackList extends Component {
 }
 
 class SessionListItem extends Component {
+  static propTypes = {
+    tracks: PropTypes.array,
+    isTrackActive: PropTypes.func,
+    onTrackChange: PropTypes.func
+  }
+
   state = {
     expanded: false,
     loading: false,
@@ -83,11 +89,12 @@ class SessionListItem extends Component {
   }
 
   render () {
-    let { file } = this.props
+    let { file, isTrackActive } = this.props
     let { tracks } = this.state
+    let selectedTracks = tracks.filter(t => isTrackActive(t)).length
     return (
       <ListHeader>
-        <span onClick={() => this.toggle()}>{file} (0/{tracks.length})</span>
+        <span onClick={() => this.toggle()}>{file} ({selectedTracks}/{tracks.length})</span>
         {this.renderTrackList()}
         <style jsx>{`
           span:hover {

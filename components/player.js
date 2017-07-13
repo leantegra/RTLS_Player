@@ -1,9 +1,8 @@
 import { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { List, ListItem, Button, Icon } from 'react-mdc-web'
+import { List, ListItem, Button, Icon, Subheading2 } from 'react-mdc-web'
 import Track from './track'
 import Timer from './timer'
-import { Subheading2 } from 'react-mdc-web'
 
 import debuger from 'debug'
 const debug = debuger('sessions')
