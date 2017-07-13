@@ -7,7 +7,7 @@ import SessionList from '../components/session'
 import { Display1 } from 'react-mdc-web'
 
 import debuger from 'debug'
-const debug = debuger('sessions')
+const debug = debuger('location')
 const MAX_TRACKS_COUNT = 10
 
 let locations = [
@@ -94,11 +94,14 @@ export default class Location extends Component {
 
   onTrackChange = ({ track, checked }) => {
     let { tracks } = this.state
+    debug('onTrackChange', tracks.length, track.id, checked)
     if (checked && tracks.length < MAX_TRACKS_COUNT) tracks = tracks.concat(track)
     else tracks = tracks.filter(t => t !== track)
-    debug('onTrackChange', tracks, track, checked)
+    debug('onTrackChange left', tracks.length, tracks)
     this.setState({ tracks })
   }
+
+  removeAllTracks = () => this.setState({tracks: []})
 
   /* Load meta and sessions on client only. */
   async componentDidMount () {
@@ -114,7 +117,7 @@ export default class Location extends Component {
     return (
       <Layout sidebar={sidebar}>
         <Display1>{location ? location.title : 'Unknown'}</Display1>
-        <Player meta={meta} tracks={tracks} />
+        <Player meta={meta} tracks={tracks} onTrackChange={this.onTrackChange} removeAllTracks={this.removeAllTracks} />
       </Layout>
     )
   }

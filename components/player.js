@@ -1,6 +1,6 @@
 import { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import {List, ListItem} from 'react-mdc-web'
+import {List, ListItem, Button} from 'react-mdc-web'
 import Track from './track'
 import Timer from './timer'
 import debuger from 'debug'
@@ -48,12 +48,20 @@ function PlayerLegend ({tracks}) {
 }
 
 export default class Player extends PureComponent {
+  static propTypes = {
+    tracks: PropTypes.array,
+    onTrackChange: PropTypes.func,
+    removeAllTracks: PropTypes.func
+  }
+
   state = {
     time: -1,
     tail: 0
   }
 
   onTick = (time, tail) => this.setState({time, tail})
+
+  clear = () => this.props.removeAllTracks()
 
   render () {
     let { meta, tracks } = this.props
@@ -68,6 +76,7 @@ export default class Player extends PureComponent {
         <PlayerCanvas meta={meta} tracks={tracks} time={time} tail={tail} />
         <Timer onTick={this.onTick} max={maxTime} width={meta.width + 2 * PLAYER_PADDING} />
         <PlayerLegend tracks={tracks} />
+        {tracks.length ? <Button onClick={ this.clear }>Remove all</Button> : null }
       </div>
     )
   }
