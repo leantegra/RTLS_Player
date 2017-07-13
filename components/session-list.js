@@ -2,7 +2,6 @@
 import { Component, PureComponent } from 'react'
 import debuger from 'debug'
 import PropTypes from 'prop-types'
-import { SvgTest } from './track'
 
 import { Headline, List, ListItem, ListGroup, ListHeader, Checkbox } from 'react-mdc-web'
 import { getSessionDeviceIds, makeTrack } from '../utils/session'
@@ -89,7 +88,7 @@ class SessionListItem extends Component {
     return (
       <ListHeader>
         <span onClick={() => this.toggle()}>{file} (0/{tracks.length})</span>
-        { this.renderTrackList() }
+        {this.renderTrackList()}
         <style jsx>{`
           span:hover {
             cursor: pointer;
@@ -101,9 +100,13 @@ class SessionListItem extends Component {
 }
 
 export default class SessionList extends PureComponent {
+  static propTypes = {
+    files: PropTypes.array,
+    location: PropTypes.object
+  }
+
   state = {
-    tracks: [],
-    timestamp: 0
+    tracks: []
   }
 
   onTrackChange = ({ track, checked }) => {
@@ -115,7 +118,7 @@ export default class SessionList extends PureComponent {
   }
 
   isTrackActive = (track) => {
-      return this.state.tracks.indexOf(track) > -1
+    return this.state.tracks.indexOf(track) > -1
   }
 
   render () {
