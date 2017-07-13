@@ -69,11 +69,13 @@ let sessionIds = [
   'static_13wb_tx5_adv500.json',
   'static_13wb_tx5_adv500_A55_n3.2_lp0.2_sh1.5.json',
   'static_13wb_tx5_adv500_A55_n3.2_sh1.5.json',
+  'static_13wb_tx5_adv500_A48_n2.9_sh1.5_C1.3A-8.json',
 
   '4wr_spin_0607.json', // rotating in same place
   '4wr_spin_0607_A55_n3.2_sh1.5.json',
   '4wr_spin_0607_A55_n3.2_sh1.5_lp0.2.json',
-
+  '4wr_spin_0607_A48_n2.9_sh1.5_lp0.2_C1.3A-8.json',
+  
   'temp.json'
 ]
 
