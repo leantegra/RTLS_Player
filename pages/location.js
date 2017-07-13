@@ -34,13 +34,17 @@ let sessionIds = [
   // 'dynamic_3wb_tx5_adv500_first_lp0.7_C1.6.json',
   // 'dynamic_3wb_tx5_adv500_first_lp0.99_C1.7.json',
   // 'dynamic_3wb_tx5_adv500_first_n2.9_lp0.99_C1.5.json',
+
   // 'dynamic_3wb_tx5_adv100_n2.9_lp0.1_sh1.5_C1.7.json',
   // 'dynamic_3wb_tx5_adv100_n2.9_lp0.1_C1.7.json',
+  // 'dynamic_3wb_tx5_adv100_first_lp0.17_A28_n5.34.json',
+  // 'dynamic_3wb_tx5_adv100_first_lp0.1_A48_n2.8.json',
+
   // 'dynamic_3wb_tx5_adv500_second_n2.9_sh1.5_C1.5.json',
 
   // 'dynamic_3wb_tx5_adv500_first_lp0.3_Adivrssi1.5.json',
   // 'dynamic_3wb_tx5_adv500_first_lp0.3_Adivrssi2.json',
-  // 'dynamic_3wb_tx5_adv100_first_lp0.17_A28_n5.34.json',
+  
   // 'dynamic_3wb_tx5_adv500-h10_sh1.5.json',
   // 'dynamic_3wb_tx5_adv500-h5_sh2.json',
   // 'dynamic_3wb_tx5_adv500-lp0.1.json',
@@ -52,7 +56,7 @@ let sessionIds = [
   // 'dynamic_3wb_tx5_adv500_first_lp0.17_A28_n5.34.json',
   // 'dynamic_3wb_tx5_adv100_first_lp0.17_A28_n5.34.json',
   // 'dynamic_3wb_tx5_adv100_first_lp0.1_A28_n5.34.json',
-  // 'dynamic_3wb_tx5_adv100_first_lp0.1_A48_n2.8.json',
+  
 
   'dynamic_T_3wb_tx5_adv500.json', // base
   'dynamic_T_3wb_tx5_adv500_n2.9_sh1.5_C1.3A-10.json', // +++
@@ -70,6 +74,9 @@ let sessionIds = [
   'static_13wb_tx5_adv500_A55_n3.2_lp0.2_sh1.5.json',
   'static_13wb_tx5_adv500_A55_n3.2_sh1.5.json',
   'static_13wb_tx5_adv500_A48_n2.9_sh1.5_C1.3A-8.json',
+
+  'static_all_tx5_adv500_old_antenna.json',
+  'static_all_tx5_adv500_old_antenna2706_A48_n2.9_sh1.5_lp0.2_C1.3A-8.json',
 
   '4wr_spin_0607.json', // rotating in same place
   '4wr_spin_0607_A55_n3.2_sh1.5.json',
