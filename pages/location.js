@@ -8,6 +8,7 @@ import { Display1 } from 'react-mdc-web'
 
 import debuger from 'debug'
 const debug = debuger('sessions')
+const MAX_TRACKS_COUNT = 10
 
 let locations = [
   { slug: 'ltg-web-room', title: 'LTG Office / Web Room' }
@@ -17,8 +18,8 @@ let locations = [
 let sessionIds = [
   'dynamic_3wb_tx5_adv500_first.json',
   'dynamic_3wb_tx5_adv500_first_n2.9_sh1.5_C1.3A-8.json',
-  // 'dynamic_3wb_tx5_adv500_first_A55_n3.2_lp0.3_sh1.5.json',
-  // 'dynamic_3wb_tx5_adv500_first_A55_n3.2_lp0.2_sh1.5.json',
+  'dynamic_3wb_tx5_adv500_first_A55_n3.2_lp0.3_sh1.5.json',
+  'dynamic_3wb_tx5_adv500_first_A55_n3.2_lp0.2_sh1.5.json',
   // 'dynamic_3wb_tx5_adv500_first_A55_n3.2_sh1.5.json',
   // 'dynamic_3wb_tx5_adv500_first_A47_n3.8_lp0.2_sh1.5.json',
 
@@ -53,20 +54,20 @@ let sessionIds = [
   // 'dynamic_3wb_tx5_adv100_first_lp0.1_A28_n5.34.json',
   // 'dynamic_3wb_tx5_adv100_first_lp0.1_A48_n2.8.json',
 
-  // 'dynamic_T_3wb_tx5_adv500.json', // base
-  // 'dynamic_T_3wb_tx5_adv500_A55_n3.2_lp0.3_sh1.5.json',
-  // 'dynamic_T_3wb_tx5_adv500_A55_n3.2_sh1.5.json',
-  // 'dynamic_T_3wb_tx5_adv500_n2.9_sh1.5_C1.3A-10.json', //+++
+  'dynamic_T_3wb_tx5_adv500.json', // base
+  'dynamic_T_3wb_tx5_adv500_n2.9_sh1.5_C1.3A-10.json', // +++
+  'dynamic_T_3wb_tx5_adv500_A55_n3.2_lp0.3_sh1.5.json',
+  'dynamic_T_3wb_tx5_adv500_A55_n3.2_sh1.5.json',
   // 'dynamic_T_3wb_tx5_adv500-lp0.2.json',
 
-  // 'dynamic_T_3wb_tx5_adv500-lp0.3.json',
+  'dynamic_T_3wb_tx5_adv500-lp0.3.json',
   // 'dynamic_T_3wb_tx5_adv500-h10_sh1.5.json',
   // 'dynamic_T_3wb_tx5_adv500-lp0.3_A28_n5.34.json',
   // 'dynamic_T_3wb_tx5_adv500_lp0.1_h10_sh1.5.json',
   // 'dynamic_T_3wb_tx5_adv500_lp0.2_h10_sh1.5.json',
   // user in same place
-  // '4wr_spin_0607.json',
-  // 'static_13wb_tx5_adv500_A55_n3.2_lp0.2_sh1.5.json',
+  '4wr_spin_0607.json',
+  'static_13wb_tx5_adv500_A55_n3.2_lp0.2_sh1.5.json',
   'temp.json'
 ]
 
@@ -93,7 +94,7 @@ export default class Location extends Component {
 
   onTrackChange = ({ track, checked }) => {
     let { tracks } = this.state
-    if (checked && tracks.length < 10) tracks = tracks.concat(track)
+    if (checked && tracks.length < MAX_TRACKS_COUNT) tracks = tracks.concat(track)
     else tracks = tracks.filter(t => t !== track)
     debug('onTrackChange', tracks, track, checked)
     this.setState({ tracks })

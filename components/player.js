@@ -6,8 +6,12 @@ import debuger from 'debug'
 
 const debug = debuger('sessions')
 
-const COLORS = ['red', 'green', 'orange', 'blue', 'yellow', 'pink']
+const COLORS = ['red', 'green', 'orange', 'navy', 'yellow', 'magenta', 'brown', 'indigo', 'purple', 'black']
 const PLAYER_PADDING = 24
+
+function getColor (index) {
+  return COLORS[index] || COLORS[COLORS.length - 1]
+}
 
 function PlayerCanvas ({meta, tracks, time, tail}) {
   let style = {
@@ -22,7 +26,7 @@ function PlayerCanvas ({meta, tracks, time, tail}) {
     <div style={style}>
       {tracks.map((t, i) => (
         <Track key={i} width={meta.width} height={meta.height}
-          points={t.points} color={COLORS[i]} start={start} end={time}
+          points={t.points} color={getColor(i)} start={start} end={time}
         />
         )
       )}
