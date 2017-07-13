@@ -3,9 +3,9 @@ import { Grid, Cell, Textfield, IconToggle, LinearProgress, FormField, Radio, Ic
 
 function SpeedControl ({ speed, onChange }) {
   let radioField = (value) => (
-    <FormField id="radio-speed-{value}" key={value}>
+    <FormField id='radio-speed-{value}' key={value}>
       <Radio
-        name="speed"
+        name='speed'
         value={value}
         onChange={onChange}
         checked={speed === value}
@@ -22,7 +22,6 @@ function SpeedControl ({ speed, onChange }) {
 }
 
 export default class Timer extends PureComponent {
-
   state = {
     start: 0,
     end: 0,
@@ -32,53 +31,52 @@ export default class Timer extends PureComponent {
     stopped: true
   }
 
-
-  renderTimeline() {
+  renderTimeline () {
     let { time, speed, stopped, tail } = this.state
     let progress = time / (this.props.max || 1)
-    let maxSeconds = this.props.max / 1000;
-    
+    let maxSeconds = this.props.max / 1000
+
     return (
       <Grid>
         <Cell col={12}>
           <LinearProgress accent progress={progress} />
         </Cell>
-        <Cell col={1} align="middle">
-          <IconToggle className="material-icons" onClick={() => this.stop(0)}>
+        <Cell col={1} align='middle'>
+          <IconToggle className='material-icons' onClick={() => this.stop(0)}>
             skip_previous
           </IconToggle>
         </Cell>
-        <Cell col={1} align="middle">
-          <IconToggle className="material-icons" onClick={this.toggle}>
+        <Cell col={1} align='middle'>
+          <IconToggle className='material-icons' onClick={this.toggle}>
             {(this.state.stopped ? 'play' : 'pause') + '_circle_outline'}
           </IconToggle>
         </Cell>
-        <Cell col={1} align="middle">
-          <IconToggle className="material-icons" onClick={() => this.stop(this.props.max)}>
+        <Cell col={1} align='middle'>
+          <IconToggle className='material-icons' onClick={() => this.stop(this.props.max)}>
             skip_next
           </IconToggle>
         </Cell>
-        <Cell col={2} align="middle">
-          <input onChange={this.onTimeChange} value={time/1000} title="Video offset, sec"
-            type="number" style={{width: '40px'}}/>/{maxSeconds}s
+        <Cell col={2} align='middle'>
+          <input onChange={this.onTimeChange} value={time / 1000} title='Video offset, sec'
+            type='number' style={{width: '40px'}} />/{maxSeconds}s
         </Cell>
-        <Cell col={5} align="middle">
+        <Cell col={5} align='middle'>
           <SpeedControl speed={speed} onChange={this.onSpeedChange} />
         </Cell>
-        <Cell col={2} align="middle">
-          <input onChange={this.onTailChange} title="Video tail, seconds" value={tail} 
-            type="number" style={{width: '40px'}}/>s
+        <Cell col={2} align='middle'>
+          <input onChange={this.onTailChange} title='Video tail, seconds' value={tail}
+            type='number' style={{width: '40px'}} />s
         </Cell>
-        
+
       </Grid>
     )
   }
 
-  render() {
+  render () {
     return (
       <div style={{width: this.props.width}}>
         { this.renderTimeline() }
-      </div>  
+      </div>
     )
   }
 
@@ -99,21 +97,21 @@ export default class Timer extends PureComponent {
     let { time, speed, tail, stopped } = this.state
     console.log('tick', time, tail, stopped)
     this.props.onTick(time, tail)
-    if (stopped) return;
+    if (stopped) return
     time += 1000
     this.setState({ time })
     if (time > this.props.max) this.stop()
     else setTimeout(this.tick, 1000 / speed)
   }
 
-  stop(time) {
+  stop (time) {
     this.setState({stopped: true })
     if (time !== undefined) this.setState({time}, this.tick)
   }
 
-  start() {
-    let time = this.state.time;
-    if (time >= this.props.max) time = 0; // rewind to start
+  start () {
+    let time = this.state.time
+    if (time >= this.props.max) time = 0 // rewind to start
     this.setState({
       time,
       stopped: false

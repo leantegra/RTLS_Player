@@ -17,7 +17,7 @@ export function makeTrack (loc, session, mac) {
     return device && Object.assign({
       ts: tick.timestamp - start,
       lon: device.lon,
-      lat: device.lat,
+      lat: device.lat
     }, translate(device.lon, device.lat, loc))
   }).filter(Boolean)
   return { id: mac, points }

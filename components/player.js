@@ -5,7 +5,7 @@ import Timer from './timer'
 import { Display1 } from 'react-mdc-web'
 
 const COLORS = ['red', 'green', 'orange', 'blue', 'yellow', 'pink']
-const PLAYER_PADDING = 24;
+const PLAYER_PADDING = 24
 
 function PlayerCanvas ({meta, tracks, time, tail}) {
   let style = {
@@ -17,7 +17,7 @@ function PlayerCanvas ({meta, tracks, time, tail}) {
   }
   let start = (tail ? Math.max(0, time - tail * 1000) : 0)
   return (
-    <div style={ style }>
+    <div style={style}>
       {tracks.map((t, i) => (
         <Track key={i} width={meta.width} height={meta.height}
           points={t} color={COLORS[i]} start={start} end={time}
@@ -35,40 +35,39 @@ function translate (lon, lat, loc) {
   return {x: Math.round(x), y: Math.round(y)}
 }
 
-
-function makeTrack(loc, session, mac) {
+function makeTrack (loc, session, mac) {
   let start = session[0].timestamp
   if (!mac) mac = session[0].devices[0].id
   return session.map(tick => {
-      let device = tick.devices.filter(d => d.id === mac)[0]
-      return device && Object.assign({
-        ts: tick.timestamp - start,
-        lon: device.lon,
-        lat: device.lat,
-      }, translate(device.lon, device.lat, loc))
-    }).filter(Boolean)
+    let device = tick.devices.filter(d => d.id === mac)[0]
+    return device && Object.assign({
+      ts: tick.timestamp - start,
+      lon: device.lon,
+      lat: device.lat
+    }, translate(device.lon, device.lat, loc))
+  }).filter(Boolean)
 }
 
 export default class Player extends PureComponent {
   state = {
     time: -1,
     tail: 0,
-    tracks: [],
+    tracks: []
   }
 
   onTick = (time, tail) => this.setState({time, tail})
 
-  render() {
+  render () {
     let { meta, sessions } = this.props
     let { tracks, time, tail } = this.state
     console.log(`Player time=${time}, tail=${tail}`)
     tracks = sessions && sessions.map(s => makeTrack(meta, s)) || []
-    let maxTime = tracks.reduce((acc, t) => Math.max(acc, t[t.length -1].ts), 0)
-    if (time < 0) time = maxTime; 
-    if (!meta) return null;
+    let maxTime = tracks.reduce((acc, t) => Math.max(acc, t[t.length - 1].ts), 0)
+    if (time < 0) time = maxTime
+    if (!meta) return null
     return (
       <div>
-        <PlayerCanvas meta={meta} tracks={tracks} time={time } tail={tail} />
+        <PlayerCanvas meta={meta} tracks={tracks} time={time} tail={tail} />
         <Timer onTick={this.onTick} max={maxTime} width={meta.width + 2 * PLAYER_PADDING} />
       </div>
     )
