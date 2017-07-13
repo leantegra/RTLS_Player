@@ -1,15 +1,16 @@
 import { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import {List, ListItem} from 'react-mdc-web'
 import Track from './track'
 import Timer from './timer'
 import debuger from 'debug'
 
 const debug = debuger('sessions')
 
-const COLORS = ['red', 'green', 'orange', 'navy', 'yellow', 'magenta', 'brown', 'indigo', 'purple', 'black']
+const COLORS = ['red', 'green', 'purple', 'orange', 'navy', 'deeppink', 'brown', 'magenta', 'indigo', 'black']
 const PLAYER_PADDING = 24
 
-function getColor (index) {
+function getTrackColor (index) {
   return COLORS[index] || COLORS[COLORS.length - 1]
 }
 
@@ -26,11 +27,23 @@ function PlayerCanvas ({meta, tracks, time, tail}) {
     <div style={style}>
       {tracks.map((t, i) => (
         <Track key={i} width={meta.width} height={meta.height}
-          points={t.points} color={getColor(i)} start={start} end={time}
+          points={t.points} color={getTrackColor(i)} start={start} end={time}
         />
         )
       )}
     </div>
+  )
+}
+
+function PlayerLegend ({tracks}) {
+  return (
+    <List dense>
+      {
+        tracks.map((t, i) => (
+          <ListItem key={i} style={{color: getTrackColor(i)}}>{t.id} ({t.file})</ListItem>
+        ))
+      }
+    </List>
   )
 }
 
@@ -54,6 +67,7 @@ export default class Player extends PureComponent {
       <div>
         <PlayerCanvas meta={meta} tracks={tracks} time={time} tail={tail} />
         <Timer onTick={this.onTick} max={maxTime} width={meta.width + 2 * PLAYER_PADDING} />
+        <PlayerLegend tracks={tracks} />
       </div>
     )
   }

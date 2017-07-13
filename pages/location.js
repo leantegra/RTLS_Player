@@ -115,7 +115,6 @@ export default class Location extends Component {
       <Layout sidebar={sidebar}>
         <Display1>{location ? location.title : 'Unknown'}</Display1>
         <Player meta={meta} tracks={tracks} />
-
       </Layout>
     )
   }

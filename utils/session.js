@@ -1,3 +1,6 @@
+import debuger from 'debug'
+const debug = debuger('utils/session')
+
 export function getSessionDeviceIds (session) {
   return session[0] && session[0].devices.map(d => d.id)
 }
@@ -9,7 +12,8 @@ export function translate (lon, lat, loc) {
   return {x: Math.round(x), y: Math.round(y)}
 }
 
-export function makeTrack (loc, session, mac) {
+export function makeTrack (loc, file, session, mac) {
+  debug('makeTrack', loc, file, session, mac)
   let start = session[0].timestamp
   if (!mac) mac = session[0].devices[0].id
   let points = session.map(tick => {
@@ -20,5 +24,5 @@ export function makeTrack (loc, session, mac) {
       lat: device.lat
     }, translate(device.lon, device.lat, loc))
   }).filter(Boolean)
-  return { id: mac, points }
+  return { id: mac, file, points }
 }

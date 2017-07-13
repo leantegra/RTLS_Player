@@ -59,7 +59,7 @@ class SessionListItem extends Component {
     try {
       let session = await fetch(`/static/locations/${location.slug}/${file}`).then(r => r.json())
       let ids = getSessionDeviceIds(session)
-      tracks = ids.map(id => makeTrack(location, session, id))
+      tracks = ids.map(id => makeTrack(location, file, session, id))
       loaded = true
     } finally {
       loading = false
