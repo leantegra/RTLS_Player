@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Layout from '../components/layout'
 import Player from '../components/player'
 import SessionList from '../components/session'
-import { Display1 } from 'react-mdc-web'
+import { Headline } from 'react-mdc-web'
 
 import debuger from 'debug'
 const debug = debuger('location')
@@ -116,7 +116,7 @@ export default class Location extends Component {
     let sidebar = meta ? <SessionList location={meta} tracks={tracks} files={sessionIds} onTrackChange={this.onTrackChange} /> : null
     return (
       <Layout sidebar={sidebar}>
-        <Display1>{location ? location.title : 'Unknown'}</Display1>
+        <Headline>{location ? location.title : 'Unknown'}</Headline>
         <Player meta={meta} tracks={tracks} onTrackChange={this.onTrackChange} removeAllTracks={this.removeAllTracks} />
       </Layout>
     )
