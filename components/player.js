@@ -3,18 +3,19 @@ import PropTypes from 'prop-types'
 import { List, ListItem, Button, Icon } from 'react-mdc-web'
 import Track from './track'
 import Timer from './timer'
-import debuger from 'debug'
+import { Subheading2 } from 'react-mdc-web'
 
+import debuger from 'debug'
 const debug = debuger('sessions')
 
 const COLORS = ['red', 'green', 'purple', 'orange', 'navy', 'deeppink', 'brown', 'magenta', 'indigo', 'black']
 const PLAYER_PADDING = 24
 
-function getTrackColor(index) {
+function getTrackColor (index) {
   return COLORS[index] || COLORS[COLORS.length - 1]
 }
 
-function PlayerCanvas({ meta, tracks, time, tail }) {
+function PlayerCanvas ({ meta, tracks, time, tail }) {
   let style = {
     width: meta.width,
     height: meta.height,
@@ -35,7 +36,7 @@ function PlayerCanvas({ meta, tracks, time, tail }) {
   )
 }
 
-function PlayerLegend({ tracks, onTrackChange }) {
+function PlayerLegend ({ tracks, onTrackChange }) {
   return (
     <List dense style={{maxWidth: 600}}>
       {
@@ -60,6 +61,17 @@ function PlayerLegend({ tracks, onTrackChange }) {
   )
 }
 
+function PlayerFooter ({ tracks, onTrackChange, removeAllTracks }) {
+  if (!tracks.length) return null
+  return (
+    <div>
+      <Subheading2>Visible tracks</Subheading2>
+      <PlayerLegend tracks={tracks} onTrackChange={onTrackChange} />
+      <Button onClick={removeAllTracks}>Remove all</Button>
+    </div>
+  )
+}
+
 export default class Player extends PureComponent {
   static propTypes = {
     tracks: PropTypes.array,
@@ -76,7 +88,7 @@ export default class Player extends PureComponent {
 
   clear = () => this.props.removeAllTracks()
 
-  render() {
+  render () {
     let { meta, tracks, onTrackChange } = this.props
     let { time, tail } = this.state
     debug(`Player time=${time}, tail=${tail}`, tracks)
@@ -88,8 +100,7 @@ export default class Player extends PureComponent {
       <div>
         <PlayerCanvas meta={meta} tracks={tracks} time={time} tail={tail} />
         <Timer onTick={this.onTick} max={maxTime} width={meta.width + 2 * PLAYER_PADDING} />
-        <PlayerLegend tracks={tracks} onTrackChange={onTrackChange} />
-        {tracks.length ? <Button onClick={this.clear}>Remove all</Button> : null}
+        <PlayerFooter tracks={tracks} onTrackChange={onTrackChange} removeAllTracks={this.clear} />
       </div>
     )
   }

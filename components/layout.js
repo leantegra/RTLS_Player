@@ -42,6 +42,7 @@ export default ({ children, sidebar, title = 'RTLS player' }) => (
       <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' />
       { /* <link type="text/css" href="/static/css/mdc.typography.css" rel="stylesheet"> */}
       <link type='text/css' href='/static/css/global.min.css' rel='stylesheet' />
+      <link rel='icon' type='image/png' href='/static/favicon-32x32.png' sizes='32x32' />
     </Head>
     <MainToolbar />
 
