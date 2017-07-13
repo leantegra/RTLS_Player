@@ -15,3 +15,8 @@ footer {
   background-color: $primary-light-color;
   padding: 20px;
 }
+.clear-icon {
+  &:hover {
+    cursor: pointer;
+  }
+}
