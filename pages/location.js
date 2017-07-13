@@ -3,8 +3,11 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import Layout from '../components/layout'
 import Player from '../components/player'
-import SessionList from '../components/session-list'
+import SessionList from '../components/session'
 import { Display1 } from 'react-mdc-web'
+
+import debuger from 'debug'
+const debug = debuger('sessions')
 
 let locations = [
   { slug: 'ltg-web-room', title: 'LTG Office / Web Room' }
@@ -78,12 +81,22 @@ async function loadSessions (slug) {
 }
 
 export default class Location extends Component {
-  state = {}
+  state = {
+    tracks: []
+  }
 
   static async getInitialProps ({ req, query, res }) {
     let location = locations.find(l => l.slug === query.slug)
     if (!location && res) res.statusCode = 404
     return { location }
+  }
+
+  onTrackChange = ({ track, checked }) => {
+    let { tracks } = this.state
+    if (checked && tracks.length < 10) tracks = tracks.concat(track)
+    else tracks = tracks.filter(t => t !== track)
+    debug('onTrackChange', tracks, track, checked)
+    this.setState({ tracks })
   }
 
   /* Load meta and sessions on client only. */
@@ -95,12 +108,12 @@ export default class Location extends Component {
 
   render () {
     let { location } = this.props
-    let { meta, sessions } = this.state
-    let sidebar = meta && <SessionList location={meta} files={sessionIds} /> || null
+    let { meta, tracks } = this.state
+    let sidebar = meta ? <SessionList location={meta} tracks={tracks} files={sessionIds} onTrackChange={this.onTrackChange} /> : null
     return (
       <Layout sidebar={sidebar}>
-        <Display1>{location && location.title || 'Unknown'}</Display1>
-        <Player meta={meta} sessions={sessions} />
+        <Display1>{location ? location.title : 'Unknown'}</Display1>
+        <Player meta={meta} tracks={tracks} />
 
       </Layout>
     )

@@ -1,11 +1,11 @@
 /* global fetch */
 import { Component, PureComponent } from 'react'
-import debuger from 'debug'
 import PropTypes from 'prop-types'
 
 import { Headline, List, ListItem, ListGroup, ListHeader, Checkbox } from 'react-mdc-web'
 import { getSessionDeviceIds, makeTrack } from '../utils/session'
 
+import debuger from 'debug'
 const debug = debuger('sessions')
 
 class TrackListItem extends PureComponent {
@@ -102,27 +102,17 @@ class SessionListItem extends Component {
 export default class SessionList extends PureComponent {
   static propTypes = {
     files: PropTypes.array,
-    location: PropTypes.object
-  }
-
-  state = {
-    tracks: []
-  }
-
-  onTrackChange = ({ track, checked }) => {
-    let { tracks } = this.state
-    if (checked && tracks.length < 10) tracks = tracks.concat(track)
-    else tracks = tracks.filter(t => t !== track)
-    debug('onTrackChange', tracks, track, checked)
-    this.setState({ tracks })
+    location: PropTypes.object,
+    tracks: PropTypes.array,
+    onTrackChange: PropTypes.func
   }
 
   isTrackActive = (track) => {
-    return this.state.tracks.indexOf(track) > -1
+    return this.props.tracks.indexOf(track) > -1
   }
 
   render () {
-    let { files, location } = this.props
+    let { files, location, onTrackChange } = this.props
     return (
       <div>
         <Headline>RTLS sessions</Headline>
@@ -131,7 +121,7 @@ export default class SessionList extends PureComponent {
             <SessionListItem location={location}
               file={file}
               key={file}
-              onTrackChange={this.onTrackChange}
+              onTrackChange={onTrackChange}
               isTrackActive={this.isTrackActive}
             />
           ))}

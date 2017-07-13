@@ -2,7 +2,9 @@ import { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Track from './track'
 import Timer from './timer'
-import { Display1 } from 'react-mdc-web'
+import debuger from 'debug'
+
+const debug = debuger('sessions')
 
 const COLORS = ['red', 'green', 'orange', 'blue', 'yellow', 'pink']
 const PLAYER_PADDING = 24
@@ -20,7 +22,7 @@ function PlayerCanvas ({meta, tracks, time, tail}) {
     <div style={style}>
       {tracks.map((t, i) => (
         <Track key={i} width={meta.width} height={meta.height}
-          points={t} color={COLORS[i]} start={start} end={time}
+          points={t.points} color={COLORS[i]} start={start} end={time}
         />
         )
       )}
@@ -28,43 +30,22 @@ function PlayerCanvas ({meta, tracks, time, tail}) {
   )
 }
 
-// translate geojson to canvas coordinates
-function translate (lon, lat, loc) {
-  let x = loc.width * (lon - loc.topLeft[0]) / (loc.bottomRight[0] - loc.topLeft[0])
-  let y = loc.height * (loc.topLeft[1] - lat) / (loc.topLeft[1] - loc.bottomRight[1])
-  return {x: Math.round(x), y: Math.round(y)}
-}
-
-function makeTrack (loc, session, mac) {
-  let start = session[0].timestamp
-  if (!mac) mac = session[0].devices[0].id
-  return session.map(tick => {
-    let device = tick.devices.filter(d => d.id === mac)[0]
-    return device && Object.assign({
-      ts: tick.timestamp - start,
-      lon: device.lon,
-      lat: device.lat
-    }, translate(device.lon, device.lat, loc))
-  }).filter(Boolean)
-}
-
 export default class Player extends PureComponent {
   state = {
     time: -1,
-    tail: 0,
-    tracks: []
+    tail: 0
   }
 
   onTick = (time, tail) => this.setState({time, tail})
 
   render () {
-    let { meta, sessions } = this.props
-    let { tracks, time, tail } = this.state
-    console.log(`Player time=${time}, tail=${tail}`)
-    tracks = sessions && sessions.map(s => makeTrack(meta, s)) || []
-    let maxTime = tracks.reduce((acc, t) => Math.max(acc, t[t.length - 1].ts), 0)
-    if (time < 0) time = maxTime
+    let { meta, tracks } = this.props
+    let { time, tail } = this.state
+    debug(`Player time=${time}, tail=${tail}`, tracks)
     if (!meta) return null
+    let last = (list) => list[list.length - 1] // fix Javascript array
+    let maxTime = tracks.reduce((acc, t) => Math.max(acc, last(t.points).ts), 0)
+    if (time < 0) time = maxTime
     return (
       <div>
         <PlayerCanvas meta={meta} tracks={tracks} time={time} tail={tail} />
@@ -80,5 +61,5 @@ Player.defaultProps = {
 
 Player.propTypes = {
   meta: PropTypes.object,
-  sessions: PropTypes.object
+  tracks: PropTypes.array
 }

@@ -74,7 +74,7 @@ export default class Timer extends PureComponent {
 
   render () {
     return (
-      <div style={{width: this.props.width}}>
+      <div style={{width: this.props.width || '100%'}}>
         { this.renderTimeline() }
       </div>
     )
