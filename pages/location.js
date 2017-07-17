@@ -16,10 +16,14 @@ let locations = [
 
 // FIX: load from server
 let sessionIds = [
+  'temp.json',
   'dynamic_3wb_tx5_adv500_first.json',
+  'dynamic_3wb_tx5_adv500_first_1600_n2.9__sh1.5_lp_0.3_C1.3A-8_h10_sh2.json',
+  'dynamic_3wb_tx5_adv500_first_n2.9_sh1.5_lp_0.3_C1.3A-8.json',
   'dynamic_3wb_tx5_adv500_first_n2.9_sh1.5_C1.3A-8.json',
   'dynamic_3wb_tx5_adv500_first_A55_n3.2_lp0.3_sh1.5.json',
   'dynamic_3wb_tx5_adv500_first_A55_n3.2_lp0.2_sh1.5.json',
+  
   // 'dynamic_3wb_tx5_adv500_first_A55_n3.2_sh1.5.json',
   // 'dynamic_3wb_tx5_adv500_first_A47_n3.8_lp0.2_sh1.5.json',
 
@@ -59,9 +63,11 @@ let sessionIds = [
   
 
   'dynamic_T_3wb_tx5_adv500.json', // base
+  'dynamic_T_3wb_tx5_adv500_v1600_n2.9__sh1.5_lp_0.3_C1.3_h10_sh2.0.json',
   'dynamic_T_3wb_tx5_adv500_n2.9_sh1.5_C1.3A-10.json', // +++
   'dynamic_T_3wb_tx5_adv500_A55_n3.2_lp0.3_sh1.5.json',
   'dynamic_T_3wb_tx5_adv500_A55_n3.2_sh1.5.json',
+  'dynamic_T_3wb_tx5_adv500_n2.9_sh1.5_lp_0.3_C1.3A-8.json',
   // 'dynamic_T_3wb_tx5_adv500-lp0.2.json',
 
   'dynamic_T_3wb_tx5_adv500-lp0.3.json',
@@ -81,9 +87,7 @@ let sessionIds = [
   '4wr_spin_0607.json', // rotating in same place
   '4wr_spin_0607_A55_n3.2_sh1.5.json',
   '4wr_spin_0607_A55_n3.2_sh1.5_lp0.2.json',
-  '4wr_spin_0607_A48_n2.9_sh1.5_lp0.2_C1.3A-8.json',
-  
-  'temp.json'
+  '4wr_spin_0607_A48_n2.9_sh1.5_lp0.2_C1.3A-8.json'
 ]
 
 async function loadMeta (slug) {
