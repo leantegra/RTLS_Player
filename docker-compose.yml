@@ -8,5 +8,6 @@ services:
     ports:
      - "3100:3000"
     volumes:
-     - .:/opt/rtls-player
-     - /opt/rtls-player/node_modules
+     - .:/home/node/rtls-player
+     - /home/node/rtls-player/node_modules
+     - /home/node/rtls-player/dist

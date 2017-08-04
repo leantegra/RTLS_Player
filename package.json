@@ -8,10 +8,11 @@
   "author": "Dmytro V. Dogadailo <dimad@leantegra.com>",
   "scripts": {
     "dev": "node server.js",
-    "build": "next build",
+    "clean": "mkdir -p ./static/css && rm -rf ./static/css/* && mkdir -p ./dist && rm -rf ./dist/*",
+    "prebuild": "npm run clean",
+    "build": "npm run build:css && next build",
     "start": "NODE_ENV=production node server.js",
-    "prebuild": "npm run build:css",
-    "build:css": "mkdir -p ./static/css && node bin/sass-convert.js > ./static/css/global.min.css"
+    "build:css": "node-sass --include-path node_modules  --include-path node_modules/react-mdc-web/node_modules --output-style compressed style/global.scss > ./static/css/global.min.css && ls -l ./static/css/global.min.css"
   },
   "dependencies": {
     "debug": "^2.6.8",
