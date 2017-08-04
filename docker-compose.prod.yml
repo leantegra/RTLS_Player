@@ -2,7 +2,6 @@ version: '3'
 services:
   player:
     image: rtls_player
-    command: node server.js
     environment:
       - NODE_ENV=production
     ports:
