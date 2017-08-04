@@ -4,8 +4,6 @@ import thunkMiddleware from 'redux-thunk'
 import { rootReducer } from 'fast-redux'
 import withRedux from 'next-redux-wrapper'
 
-console.log('withRedux', withRedux)
-
 export const initStore = (initialState = {}) => {
   return createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(thunkMiddleware)))
 }
