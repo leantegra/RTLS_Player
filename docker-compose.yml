@@ -3,7 +3,6 @@ services:
   player:
     build: .
     # userns_mode: "host" # disable userns mapping for development mode
-    command: ./bin/run-docker-dev.sh
     environment:
       - NODE_ENV=development
     ports:

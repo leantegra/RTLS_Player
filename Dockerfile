@@ -8,8 +8,8 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.1.1/dumb-init_1.1.1_a
 RUN chmod +x /usr/local/bin/dumb-init
 
 # Create app directory
-RUN mkdir -p /opt/rtls-player
-WORKDIR /opt/rtls-player
+RUN mkdir -p /home/node/rtls-player
+WORKDIR /home/node/rtls-player
 
 # Install app dependencies when package.json is changed
 COPY package.json yarn.lock ./
@@ -23,6 +23,6 @@ RUN yarn build
 # chmod is required because node_modules mapped as volume in dev mode
 RUN  chown -R node:node ./
 
+USER node
 ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
-
-CMD ["yarn", "start"]
+CMD ["node", "server"]
