@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 import Player from '../components/player'
 import SessionList from '../components/session'
 import { Headline } from 'react-mdc-web'
-
+import { attachRedux } from '../store'
 import debuger from 'debug'
 const debug = debuger('location')
 const MAX_TRACKS_COUNT = 10
@@ -100,7 +100,7 @@ async function loadSessions (slug) {
   return files.filter(Boolean)
 }
 
-export default class Location extends Component {
+class Location extends Component {
   state = {
     tracks: []
   }
@@ -145,3 +145,5 @@ export default class Location extends Component {
 Location.propTypes = {
   location: PropTypes.object
 }
+
+export default attachRedux(Location)

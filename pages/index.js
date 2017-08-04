@@ -4,8 +4,9 @@ import { Link } from '../routes'
 import {Display1} from 'react-mdc-web'
 import Icon from 'react-mdc-web/lib/Icon'
 import {List, ListItem} from 'react-mdc-web/lib/List'
+import {attachRedux} from '../store'
 
-export default () => (
+const homepage = () => (
   <Layout>
     <Display1>Availbale locations</Display1>
     <List style={{maxWidth: '400px'}}>
@@ -16,3 +17,5 @@ export default () => (
     </List>
   </Layout>
 )
+
+export default attachRedux(homepage)
