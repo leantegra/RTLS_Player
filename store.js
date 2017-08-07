@@ -8,4 +8,4 @@ export const initStore = (initialState = {}) => {
   return createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(thunkMiddleware)))
 }
 
-export const attachRedux = (comp) => withRedux(initStore)(comp)
+export const reduxPage = (comp) => withRedux(initStore)(comp)
