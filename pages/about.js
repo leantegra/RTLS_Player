@@ -1,6 +1,6 @@
 import Layout from '../components/layout'
 import {Display1, Body1} from 'react-mdc-web'
-import { reduxPage } from '../store'
+import { reduxPage } from '../config/redux'
 
 /*
 const StyleButton = (props) => (

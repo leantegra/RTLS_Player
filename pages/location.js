@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 import Player from '../components/player'
 import SessionList from '../components/session'
 import { Headline } from 'react-mdc-web'
-import { reduxPage } from '../store'
+import { reduxPage } from '../config/redux'
 import debuger from 'debug'
 const debug = debuger('location')
 const MAX_TRACKS_COUNT = 10
