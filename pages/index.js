@@ -1,21 +1,25 @@
-import Layout from '../components/layout'
-import { Link } from '../routes'
-
-import {Display1} from 'react-mdc-web'
-import Icon from 'react-mdc-web/lib/Icon'
-import {List, ListItem} from 'react-mdc-web/lib/List'
+import {PureComponent} from 'react'
+import Homepage from '../containers/homepage'
 import {reduxPage} from '../config/redux'
+import {updateLocationList} from '../store/common'
 
-const homepage = () => (
-  <Layout>
-    <Display1>Availbale locations</Display1>
-    <List style={{maxWidth: '400px'}}>
-      <ListItem>
-        <Icon name='room' />
-        <Link route='/location/ltg-web-room'><a>LTG Web Room</a></Link>
-      </ListItem>
-    </List>
-  </Layout>
-)
+async function loadLocations () {
+  // FIX: load from server
+  return Promise.resolve([
+    { slug: 'ltg-web-room', title: 'LTG Office / Web Room' }
+  ])
+}
 
-export default reduxPage(homepage)
+class Index extends PureComponent {
+
+  static async getInitialProps ({ store }) {
+    let locations = await loadLocations()
+    store.dispatch(updateLocationList(locations))
+  }
+
+  render () {
+    return (<Homepage />)
+  }
+}
+
+export default reduxPage(Index)
