@@ -14,7 +14,7 @@ export const childActionCreator = (childId, handler, name) => {
     name || handler.name,
     (state = {}, ...args) => {
       if (state === undefined) state = {}
-      console.log('reducer for name', name, 'childId', childId, 'state', state, 'args', args)
+      // console.log('reducer for name', name, 'childId', childId, 'state', state, 'args', args)
       let childState = state[childId]
       return {...state, [childId]: handler(childState, ...args)}
     })
