@@ -5,13 +5,13 @@ import { reduxPage } from '../config/redux'
 
 class LocationPage extends Component {
   static async getInitialProps ({ req, query, res }) {
-    console.log('getInitialProps', query)
+    // console.log('getInitialProps', query)
     return { slug: query.slug }
   }
 
   render () {
     let { slug } = this.props
-    console.log('LocationPage.render', this.props, new Date())
+    // console.log('LocationPage.render', this.props, new Date())
     if (!slug) return null
     return (<Location slug={slug} />)
   }

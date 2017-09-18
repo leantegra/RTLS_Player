@@ -22,7 +22,7 @@ class Homepage extends PureComponent {
       <Layout>
         <Display1>Availbale locations</Display1>
         <List style={{ maxWidth: '400px' }}>
-          {locationList.map(l => (<LocationListItem location={l} />))}
+          {locationList.map(l => (<LocationListItem location={l} key={l.slug} />))}
         </List>
       </Layout>
     )
