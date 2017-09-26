@@ -20,6 +20,7 @@ class TrackListItem extends PureComponent {
 
   render () {
     let { track, checked } = this.props
+    let pointsCount = track.points && track.points.length
     debug('TLI', track, checked)
     return (
       <ListItem>
@@ -27,7 +28,7 @@ class TrackListItem extends PureComponent {
           onChange={this.onStateChange}
           checked={checked}
         />
-        <label>{track.id}</label>
+        <label>{track.id} ({pointsCount})</label>
       </ListItem>
     )
   }
