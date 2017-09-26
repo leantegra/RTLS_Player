@@ -16,8 +16,8 @@ export default class Track extends Component {
     let device = loc.devices.find(d => d.id === signal.id)
     if (!device) return null
     let [lon, lat] = device.coords
-    let center = translate(lon, lat, this.props.location)
-    let radius = translateDistance(signal.distance, this.props.location)
+    let center = translate(lon, lat, loc)
+    let radius = translateDistance(signal.distance, loc)
     let style = {
       fill: 'none',
       strokeWidth: 1,
@@ -34,6 +34,20 @@ export default class Track extends Component {
     return signals.map(s => this.renderSignal(s))
   }
 
+  renderPoint (point) {
+    let loc = this.props.location
+    let center = translate(point.lon, point.lat, loc)
+    let signalsCount = (point.signals && point.signals.length) || 0
+    let style = {
+      fill: signalsCount >= 4 ? this.props.color : 'magenta'
+    }
+    return (
+      <circle cx={center.x} cy={center.y} r={8} style={style}>
+        <title>signals: {signalsCount}</title>
+      </circle>
+    )
+  }
+
   render () {
     let points = this.getVisiblePoints()
     if (!points || !points.length) return null
@@ -46,6 +60,7 @@ export default class Track extends Component {
           strokeWidth='2'
           fill='none'
           r={0} />
+        {this.renderPoint(lastPoint)}
         {this.renderSignals(lastPoint.signals)}
       </svg>
     )
