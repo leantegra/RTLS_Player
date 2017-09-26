@@ -3,6 +3,7 @@
   "title": "LTG Office / Web Room",
   "width": 796,
   "height": 641,
+  "widthInMeters": 15,
   "backgroundUrl": "/static/locations/ltg-web-room/ltg-web-room-planned-wb.png",
   "topLeft": [30.51073069082411, 50.43760961354354],
   "bottomRight": [30.510995773497886, 50.43747283799772],

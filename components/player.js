@@ -55,6 +55,7 @@ function PlayerCanvas ({ meta, tracks, time, tail }) {
         <LocationDevices meta={meta} />
         {tracks.map((t, i) => (
           <Track key={i} width={meta.width} height={meta.height}
+            location={meta}
             points={t.points} color={getTrackColor(i)} start={start} end={time}
           />)
         )}

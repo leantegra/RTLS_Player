@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { PathLine } from 'react-svg-pathline'
+import { translate, translateDistance } from '../utils/session'
 
 export default class Track extends Component {
   getVisiblePoints () {
@@ -10,16 +11,44 @@ export default class Track extends Component {
     return visible
   }
 
+  renderSignal (signal) {
+    let loc = this.props.location
+    let device = loc.devices.find(d => d.id === signal.id)
+    if (!device) return null
+    let [lon, lat] = device.coords
+    let center = translate(lon, lat, this.props.location)
+    let radius = translateDistance(signal.distance, this.props.location)
+    let style = {
+      fill: 'none',
+      strokeWidth: 1,
+      stroke: this.props.color
+    }
+    return (
+      <svg>
+        <circle cx={center.x} cy={center.y} r={radius} style={style} />
+      </svg>
+    )
+  }
+
+  renderSignals (signals) {
+    if (!signals) return null
+    return signals.map(s => this.renderSignal(s)) 
+  }
+
   render () {
     let points = this.getVisiblePoints()
     if (!points || !points.length) return null
+    let lastPoint = points[points.length - 1]
     return (
-      <PathLine
-        points={points}
-        stroke={this.props.color}
-        strokeWidth='2'
-        fill='none'
-        r={0} />
+      <svg>
+        <PathLine
+          points={points}
+          stroke={this.props.color}
+          strokeWidth='2'
+          fill='none'
+          r={0} />
+        { this.renderSignals(lastPoint.signals) }        
+      </svg>
     )
   }
 }

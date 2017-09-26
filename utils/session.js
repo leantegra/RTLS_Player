@@ -21,8 +21,13 @@ export function makeTrack (loc, file, session, mac) {
     return device && Object.assign({
       ts: tick.timestamp - start,
       lon: device.lon,
-      lat: device.lat
+      lat: device.lat,
+      signals: device.signals
     }, translate(device.lon, device.lat, loc))
   }).filter(Boolean)
   return { id: mac, file, points }
+}
+
+export function translateDistance (distance, loc) {
+  return Math.round(loc.width * distance / loc.widthInMeters)
 }
