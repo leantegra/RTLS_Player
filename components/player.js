@@ -2,21 +2,17 @@ import { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { List, ListItem, Button, Icon, Subheading2 } from 'react-mdc-web'
 import Track from './track'
+import Device from './device'
 import Timer from './timer'
-import { translate } from '../utils/session'
 
-import debuger from 'debug'
-const debug = debuger('sessions')
+import makeDebug from 'debug'
+const debug = makeDebug('sessions')
 
 const COLORS = ['red', 'green', 'purple', 'orange', 'navy', 'deeppink', 'brown', 'magenta', 'indigo', 'black']
 const PLAYER_PADDING = 24
 
 function getTrackColor (index) {
   return COLORS[index] || COLORS[COLORS.length - 1]
-}
-
-function LocationDevices ({meta}) {
-  return null;
 }
 
 function SvgCanvas ({width, height, children}) {
@@ -28,6 +24,19 @@ function SvgCanvas ({width, height, children}) {
   }
   return (
     <svg style={style}>{children}</svg>
+  )
+}
+
+function LocationDevices({meta}) {
+  return (
+    <svg>
+      {meta.devices.map(device => (
+        <Device
+          key={device.id}
+          device={device}
+          location={meta} />)
+      )}
+    </svg>
   )
 }
 
@@ -43,6 +52,7 @@ function PlayerCanvas ({ meta, tracks, time, tail }) {
   return (
     <div style={style}>
       <SvgCanvas width={meta.width} height={meta.height}>
+        <LocationDevices meta={meta} />
         {tracks.map((t, i) => (
           <Track key={i} width={meta.width} height={meta.height}
             points={t.points} color={getTrackColor(i)} start={start} end={time}
