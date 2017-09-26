@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { List, ListItem, Button, Icon, Subheading2 } from 'react-mdc-web'
 import Track from './track'
 import Timer from './timer'
+import { translate } from '../utils/session'
 
 import debuger from 'debug'
 const debug = debuger('sessions')
@@ -12,6 +13,22 @@ const PLAYER_PADDING = 24
 
 function getTrackColor (index) {
   return COLORS[index] || COLORS[COLORS.length - 1]
+}
+
+function LocationDevices ({meta}) {
+  return null;
+}
+
+function SvgCanvas ({width, height, children}) {
+  let style = {
+    width,
+    height,
+    position: 'absolute',
+    overflow: 'visible'
+  }
+  return (
+    <svg style={style}>{children}</svg>
+  )
 }
 
 function PlayerCanvas ({ meta, tracks, time, tail }) {
@@ -25,12 +42,13 @@ function PlayerCanvas ({ meta, tracks, time, tail }) {
   let start = (tail ? Math.max(0, time - tail * 1000) : 0)
   return (
     <div style={style}>
-      {tracks.map((t, i) => (
-        <Track key={i} width={meta.width} height={meta.height}
-          points={t.points} color={getTrackColor(i)} start={start} end={time}
-        />
-      )
-      )}
+      <SvgCanvas width={meta.width} height={meta.height}>
+        {tracks.map((t, i) => (
+          <Track key={i} width={meta.width} height={meta.height}
+            points={t.points} color={getTrackColor(i)} start={start} end={time}
+          />)
+        )}
+      </SvgCanvas>
     </div>
   )
 }

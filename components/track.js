@@ -11,23 +11,16 @@ export default class Track extends Component {
   }
 
   render () {
-    let style = {
-      width: this.props.width,
-      height: this.props.height,
-      position: 'absolute',
-      overflow: 'visible'
-    }
     let points = this.getVisiblePoints()
     if (!points || !points.length) return null
-    return (<svg style={style}>
+    return (
       <PathLine
         points={points}
         stroke={this.props.color}
         strokeWidth='2'
         fill='none'
-        r={0}
-      />
-    </svg>)
+        r={0} />
+    )
   }
 }
 
