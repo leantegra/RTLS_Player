@@ -28,6 +28,7 @@ export function makeTrack (loc, file, session, mac) {
   return { id: mac, file, points }
 }
 
+// FIXME: calculate widthInMeters from coordinates
 export function translateDistance (distance, loc) {
   return Math.round(loc.width * distance / loc.widthInMeters)
 }

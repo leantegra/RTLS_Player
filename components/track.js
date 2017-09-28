@@ -25,7 +25,9 @@ export default class Track extends Component {
       stroke: this.props.color
     }
     return (
-      <circle cx={center.x} cy={center.y} r={radius} style={style} />
+      <circle cx={center.x} cy={center.y} r={radius} style={style}>
+        <title>{signal.id}, rssi: {signal.rssi}, distance: {signal.distance.toFixed(2)}</title>
+      </circle>
     )
   }
 
@@ -38,12 +40,17 @@ export default class Track extends Component {
     let loc = this.props.location
     let center = translate(point.lon, point.lat, loc)
     let signalsCount = (point.signals && point.signals.length) || 0
+    let details = signalsCount && point.signals
+      .slice()
+      .sort((a, b) => b.rssi - a.rssi)
+      .map(s => `${s.rssi} (${s.distance.toFixed(2)})`)
+      .join('; ')
     let style = {
       fill: signalsCount >= 4 ? this.props.color : 'magenta'
     }
     return (
       <circle cx={center.x} cy={center.y} r={8} style={style}>
-        <title>signals: {signalsCount}</title>
+        <title>{signalsCount} signals: {details}</title>
       </circle>
     )
   }
