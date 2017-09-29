@@ -32,3 +32,13 @@ export function makeTrack (loc, file, session, mac) {
 export function translateDistance (distance, loc) {
   return Math.round(loc.width * distance / loc.widthInMeters)
 }
+
+const LONG = 71400.0 // Coefficient of conversion of longitude degrees to distance
+const LAT = 111280.0 // Coefficient of conversion of latitude degrees to distance
+
+// return distance between points a and b in meters
+function getDistanceBetweenCoordinates (a, b) {
+  let dx = (a[0] - b[0]) * LONG
+  let dy = (a[1] - b[1]) * LAT
+  return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2))
+}

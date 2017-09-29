@@ -3,6 +3,7 @@ import { PathLine } from 'react-svg-pathline'
 import { translate, translateDistance } from '../utils/session'
 
 export default class Track extends Component {
+
   getVisiblePoints () {
     let { points, start, end, color } = this.props
     let visible = points.filter(p => (p.ts >= start && p.ts <= end))
@@ -32,19 +33,26 @@ export default class Track extends Component {
   }
 
   renderSignals (signals) {
-    if (!signals) return null
-    return signals.map(s => this.renderSignal(s))
+    if (signals && signals.length) {
+      return signals.map(s => this.renderSignal(s))
+    }
+    return null
   }
 
   renderPoint (point) {
     let loc = this.props.location
     let center = translate(point.lon, point.lat, loc)
-    let signalsCount = (point.signals && point.signals.length) || 0
-    let details = signalsCount && point.signals
-      .slice()
-      .sort((a, b) => b.rssi - a.rssi)
-      .map(s => `${s.rssi} (${s.distance.toFixed(2)})`)
-      .join('; ')
+    let signalsCount, details
+    if (typeof point.signals === 'number') {
+      signalsCount = point.signals
+    } else {
+      signalsCount = (point.signals && point.signals.length) || 0
+      details = point.signals
+        .slice()
+        .sort((a, b) => b.rssi - a.rssi)
+        .map(s => `${s.rssi} (${s.distance.toFixed(2)})`)
+        .join('; ')
+    }
     let style = {
       fill: signalsCount >= 4 ? this.props.color : 'magenta'
     }
