@@ -16,7 +16,7 @@ function SpeedControl ({ speed, onChange }) {
 
   return (
     <div>
-      {[1, 2, 4, 8].map(radioField)}
+      {[0.5, 1, 2, 4, 8].map(radioField)}
     </div>
   )
 }
@@ -26,7 +26,7 @@ export default class Timer extends PureComponent {
     start: 0,
     end: 0,
     time: 0,
-    speed: 2,
+    speed: 1,
     tail: 0,
     stopped: true
   }
