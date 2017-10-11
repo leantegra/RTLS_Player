@@ -58,7 +58,7 @@ export default class Track extends Component {
     }
     return (
       <circle cx={center.x} cy={center.y} r={8} style={style}>
-        <title>{signalsCount} signals: {details}</title>
+        <title>{signalsCount}, ts: {point.ts}, signals: {details}</title>
       </circle>
     )
   }
