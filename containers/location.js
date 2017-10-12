@@ -20,6 +20,14 @@ let sessionIds = [
   'temp.json',
   'temp_t3d.json',
   'temp_T_t3d.json',
+  'dynamic_3wb_outsd_n3.5_h5_sh2.json',
+  'dynamic_3wb_outsd_n3.6_h5_sh2.json',
+  'dynamic_3wb_outsd_n3.7_h5_sh2.json',
+  'dynamic_3wb_outsd_n3.5_h10_sh2.json',
+  'dynamic_3wb_outsd_n3.6_h10_sh2.json',
+  'dynamic_3wb_outsd_n3.7_h10_sh2.json',
+  'dynamic_3wb_inoutsd_n3.6_h10_sh2.json',
+
   'dynamic_3wb_tx5_adv500_first.json',
   'dynamic_3wb_tx5_adv500_first_1600_n2.9__sh1.5_lp_0.3_C1.3A-8_h10_sh2.json',
   'dynamic_3wb_tx5_adv500_first_n2.9_sh1.5_lp_0.3_C1.3A-8.json',
@@ -77,7 +85,18 @@ let sessionIds = [
   // 'dynamic_T_3wb_tx5_adv500-lp0.3_A28_n5.34.json',
   // 'dynamic_T_3wb_tx5_adv500_lp0.1_h10_sh1.5.json',
   // 'dynamic_T_3wb_tx5_adv500_lp0.2_h10_sh1.5.json',
-  
+  // new trilateration
+
+  'dynamic_3wb_inoutsd_n3.6_h10_sh2.json',
+  'dynamic_T_3wb_outsd_n3.5_h10_sh2.json',
+  'dynamic_T_3wb_outsd_n3.6_h10_sh2.json',
+  'dynamic_T_3wb_outsd_n3.5_h5_sh2.json',
+  'dynamic_T_3wb_outsd_n3.6_h5_sh2.json',
+  'dynamic_T_3wb_inoutsd_n3.6_h5_sh2.json',
+  'dynamic_T_3wb_inoutsd_n3.5_h5_sh2.json',
+  'dynamic_T_3wb_outbd_n3.5_h5_sh2.json',
+  'dynamic_T_3wb_outbd_n3.6_h5_sh2.json',
+
   'static_13wb_tx5_adv500.json',
   'static_13wb_tx5_adv500_A55_n3.2_lp0.2_sh1.5.json',
   'static_13wb_tx5_adv500_A55_n3.2_sh1.5.json',
