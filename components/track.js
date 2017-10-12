@@ -15,7 +15,10 @@ export default class Track extends Component {
   renderSignal (signal) {
     let loc = this.props.location
     let device = loc.devices.find(d => d.id === signal.id)
-    if (!device) return null
+    if (!device) {
+      console.warn('No device for ', signal)
+      return null
+    }
     let [lon, lat] = device.coords
     let center = translate(lon, lat, loc)
     let radius = translateDistance(signal.distance, loc)
@@ -50,7 +53,7 @@ export default class Track extends Component {
       details = point.signals
         .slice()
         .sort((a, b) => b.rssi - a.rssi)
-        .map(s => `${s.rssi} (${s.distance.toFixed(2)})`)
+        .map(s => `${s.id}: ${s.rssi} (${s.distance.toFixed(2)})`)
         .join('; ')
     }
     let style = {

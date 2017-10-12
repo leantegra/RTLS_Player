@@ -18,6 +18,8 @@ const log = debug('location')
 
 let sessionIds = [
   'temp.json',
+  'temp_t3d.json',
+  'temp_T_t3d.json',
   'dynamic_3wb_tx5_adv500_first.json',
   'dynamic_3wb_tx5_adv500_first_1600_n2.9__sh1.5_lp_0.3_C1.3A-8_h10_sh2.json',
   'dynamic_3wb_tx5_adv500_first_n2.9_sh1.5_lp_0.3_C1.3A-8.json',
@@ -128,7 +130,7 @@ class Location extends Component {
     let sidebar = this.getSidebar(meta, tracks)
     return (
       <Layout sidebar={sidebar}>
-        <Headline>{meta ? meta.title : 'Unknown'}</Headline>
+        <Headline>{meta ? meta.title : ''}</Headline>
         {tracks
         ? <Player meta={meta} tracks={tracks} onTrackChange={this.onTrackChange}
           removeAllTracks={this.removeAllTracks} /> : null }
