@@ -39,7 +39,12 @@ let sessionIds = [
   'dynamic_3wb_tx5_adv500_first_n2.9_sh1.5_C1.3A-8.json',
   'dynamic_3wb_tx5_adv500_first_A55_n3.2_lp0.3_sh1.5.json',
   'dynamic_3wb_tx5_adv500_first_A55_n3.2_lp0.2_sh1.5.json',
- 
+  'dynamic_3wb_inoutsd_n3.5_h10_sh2.json',
+  'dynamic_3wb_inoutsd_n3.5_h5_sh2.json',
+  'dynamic_3wb_inoutsd_n3.6_h5_sh2.json',
+  'dynamic_3wb_inoutsd_n3.7_h10_sh2.json',
+  'dynamic_3wb_inoutsd_n3.7_h5_sh2.json',
+  
   // 'dynamic_3wb_tx5_adv500_first_A55_n3.2_sh1.5.json',
   // 'dynamic_3wb_tx5_adv500_first_A47_n3.8_lp0.2_sh1.5.json',
 
