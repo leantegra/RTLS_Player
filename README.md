@@ -1,10 +1,10 @@
 # Leantegra RTLS player
 
-This tool allow you to play different sequences of coordinates and compare them.
+This tool enables playing different sequences of RTLS coordinates for comparison, testing and algorithm research.
 
-The RTLS player works fully inside Docker and keep node_modules inside Docker image as well. No need to run `npm i` to install modules locally.
+The RTLS player works fully inside Docker and keeps node_modules inside Docker image as well. No need to run `npm i` to install the modules locally.
 
-Inside docker container node process is run using `node` user (uid=guid=1000), so if you bind volumes to container all files created inside container will be owned by user with uid=1000 on your host.
+The node process inside Docker container is run using `node` user (uid=guid=1000), so if you bind volumes to container all files created inside container will be owned by the user with uid=1000 on your host.
 
 ## Useful commands
 
