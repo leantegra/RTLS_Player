@@ -5,7 +5,7 @@
   "description": "rtls.com",
   "main": "index.js",
   "repository": "",
-  "author": "Dmytro V. Dogadailo <dimad@leantegra.com>",
+  "author": "Leantegra team <contact@leantegra.com>",
   "scripts": {
     "dev": "node server.js",
     "clean": "mkdir -p ./static/css && rm -rf ./static/css/* && mkdir -p ./dist && rm -rf ./dist/*",
